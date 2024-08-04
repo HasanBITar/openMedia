@@ -76,7 +76,9 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     logout(state) {
+      state.status = AUTH_STATUS.loading;
       state.user = null;
+      error: null;
     },
   },
   extraReducers: (builder) => {
@@ -121,6 +123,9 @@ const authSlice = createSlice({
         state.error = null;
         localStorage.removeItem('authToken');
       });
+
+      //
+      
   },
 });
 

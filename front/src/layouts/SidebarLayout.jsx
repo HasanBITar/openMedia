@@ -1,9 +1,9 @@
-const SidebarLayout = ({ sidebar: SidebarComponent, bg="bg-gray-800", children }) => {
+const SidebarLayout = ({ sidebar: SidebarComponent, data, bg="bg-gray-800", children }) => {
     return (
         <>
             <aside id="sidebar-multi-level-sidebar" className="fixed flex top-0 left-0 z-40 w-72 lg:w-80 xl:w-96 h-screen transition-transform -translate-x-full md:translate-x-0" aria-label="Sidebar">
                 <div className="flex-1 m-3 mt-16 overflow-y-auto rounded-lg lg:rounded-xl bg-gray-800 p-2 lg:p-4">
-                    <SidebarComponent />
+                    <SidebarComponent data={data}/>
                 </div>
             </aside>
 

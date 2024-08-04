@@ -19,12 +19,14 @@ const cc = [
   {
     username: "Mahmoud",
     date: "2024-08-04T15:10:19.461Z",
-    content: "very nice movie, can't wait for part 2!"
+    content: "very nice movie, can't wait for part 2!",
+    id: 34343
   },
   {
     username: "Mohammad",
     date: "2024-08-04T15:10:19.461Z",
-    content: "I mean it's alright"
+    content: "I mean it's alright",
+    id: 24252
   }
 ]
 
@@ -46,7 +48,7 @@ const VideoPage = ({ }) => {
 
   if (isLoading) return <LoadingPage />
   return (
-    <SidebarLayout sidebar={FileSidebar} >
+    <SidebarLayout sidebar={FileSidebar} data={data} >
       <div className='flex justify-center flex-col'>
         <div className='flex-1'>
           {error && <p>Error loading video.</p>}
@@ -82,7 +84,7 @@ const VideoPage = ({ }) => {
                 <p className="flex font-bold text-xl lg:text-2xl text-white">Comments</p>
               </div>
 
-              {cc.map(i => <Comment username={i.username} date={i.date} content={i.content} />)}
+              {cc.map(i => <Comment username={i.username} date={i.date} content={i.content} key={i.id}/>)}
 
             </div>
           </div>

@@ -141,21 +141,25 @@ const UserFilePermissionCheck = (userId, fileId) => {
 const getFile = async (userId, fileId) => {
     try {
         UserFilePermissionCheck(userId, fileId)
-        const sql = `
-            SELECT f.*, v.*, i.*, a.*, d.*
-            FROM file f
-            LEFT JOIN video v  on v.file_id = f.file_id
-            LEFT JOIN image i  on i.file_id = f.file_id
-            LEFT JOIN audio a  on a.file_id = f.file_id
-            LEFT JOIN document d  on d.file_id = f.file_id
-            WHERE f.file_id = $1
+        let sql = `
+            SELECT f.*
+            FROM file f WHERE f.file_id = $1
         `
-        const result = await db.query(sql, [fileId]);
-        
-        if (result.rowCount === 0) {
+        const file = await db.query(sql, [fileId]);
+
+        if (file.rowCount === 0) {
             return [false, `file does not exists ${fileId}`];
         }
-        return [true, rename(result.rows[0])];
+        
+        const type = file.rows[0].type;
+        console.log(type);
+        sql = `
+            SELECT t.* FROM ${type} t
+            WHERE t.file_id = $1
+        `
+        const meta = await db.query(sql, [fileId]);
+
+        return [true, rename({...file.rows[0], ...meta.rows[0]})];
     }
     catch (err) {
         console.error('Error:', err);
