@@ -8,6 +8,7 @@ export const API = {
     uploadProfile: 'file/upload-profile',
     upload: 'file/upload',
     getFiles: 'file/',
+    getFile: 'file/',
     thumbnail: BACKEND_API + 'thumbnails/',
     steamVideo: BACKEND_API + 'file/videos/',
 }

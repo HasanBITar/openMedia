@@ -1,4 +1,4 @@
-const SidebarLayout = ({ sidebar: SidebarComponent, children }) => {
+const SidebarLayout = ({ sidebar: SidebarComponent, bg="bg-gray-800", children }) => {
     return (
         <>
             <aside id="sidebar-multi-level-sidebar" className="fixed flex top-0 left-0 z-40 w-72 lg:w-80 xl:w-96 h-screen transition-transform -translate-x-full md:translate-x-0" aria-label="Sidebar">
@@ -8,7 +8,7 @@ const SidebarLayout = ({ sidebar: SidebarComponent, children }) => {
             </aside>
 
             <div className="md:ml-[17.25rem] lg:ml-[19.25rem] xl:ml-[23.25rem]">
-                <div className="not-prose relative rounded-lg lg:rounded-xl overflow-hidden dark:bg-gray-800">
+                <div className={`not-prose relative rounded-lg lg:rounded-xl overflow-hidden ${bg}`}>
                     <div className="absolute inset-0"></div>
                     <div className="relative rounded-lg lg:rounded-xl overflow-auto">
                         <div className="overscroll-contain overflow-auto h-subpage mb-3 hide-scroll-bar">

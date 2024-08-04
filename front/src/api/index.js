@@ -5,11 +5,9 @@ const baseQuery = fetchBaseQuery({
     baseUrl: BACKEND_API,
     prepareHeaders: (headers, { getState }) => {
         const token = getState().auth.user?.token;
-
         if (token) {
             headers.set('authorization', `Bearer ${token}`);
         }
-
         return headers;
     },
 });

@@ -10,7 +10,7 @@ router.post('/upload', verifyToken, uploader.single('file'), fileController.uplo
 
 router.get('/', verifyToken, fileController.getUserFiles)
 
-router.get('/:fileId', verifyToken, fileController.getFile)
+router.get('/:fileId', fileController.getFile)
 
 // router.get('/videos/:videoId', verifyToken, fileController.streamVideo)  TODO request with token
 router.get('/videos/:videoId', fileController.streamVideo)

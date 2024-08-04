@@ -1,3 +1,4 @@
+// @ts-nocheck
 import './player.css';
 
 import { useEffect, useRef, useState } from 'react';
@@ -19,8 +20,6 @@ import {
   defaultLayoutIcons,
   DefaultVideoLayout,
 } from '@vidstack/react/player/layouts/default';
-
-import { textTracks } from './tracks';
 
 const VideoPlayer = ({ streamUrl, thumbnail, title }) => {
   let player = useRef<MediaPlayerInstance>(null),
@@ -46,7 +45,7 @@ const VideoPlayer = ({ streamUrl, thumbnail, title }) => {
       provider.config = {};
     }
   }
-
+  // @ts-ignore
   const customFetch = (input, init = {}) => {
     // @ts-ignore
     const headers = new Headers(init.headers || {});
@@ -59,6 +58,7 @@ const VideoPlayer = ({ streamUrl, thumbnail, title }) => {
   };
 
   // We can listen for the `can-play` event to be notified when the player is ready.
+  // @ts-ignore
   function onCanPlay(detail: MediaCanPlayDetail, nativeEvent: MediaCanPlayEvent) {
     // 
   }
@@ -66,7 +66,7 @@ const VideoPlayer = ({ streamUrl, thumbnail, title }) => {
   return (
     <>
       <MediaPlayer
-        className="player myvideoplayer !rounded-xl overflow-hidden"
+        className="player myvideoplayer !rounded-xl !border-b-0 overflow-hidden"
         title={title}
         src={src}
         crossOrigin

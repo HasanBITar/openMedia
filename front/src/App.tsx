@@ -13,6 +13,7 @@ import Images from "./pages/Images";
 import Music from "./pages/Music";
 import Documents from "./pages/Documents";
 import VideoPage from "./pages/VideoPage";
+import LoadingPage from "./pages/LoadingPage";
 
 import ProtectedRoute from "./store/ProtectedRoute";
 import { verifyToken } from "./store/authSlice";
@@ -41,6 +42,7 @@ function App() {
         <Route path="/signin" element={<SigninPage />} />
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/" element={<LandingPage />} />
+        <Route path="/random" element={<LoadingPage />} />
         {/* <Route path="/" element={<404 />} exact /> */}
       </Routes>
     </BrowserRouter>

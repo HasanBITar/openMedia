@@ -96,8 +96,9 @@ const streamVideo = async (req, res) => {
     });
 }
 
-const getFile = async ({req, res}) => {
+const getFile = async (req, res) => {
     try {
+        console.log("helllllo", req.params);
         const fileId = req.params.fileId;
         const [ok, file]= await fileModel.getFile(req.userId, fileId)
         if (!ok) return errorRespone(result, res);

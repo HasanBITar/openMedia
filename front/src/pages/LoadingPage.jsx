@@ -4,7 +4,7 @@ const LoadingPage = () => {
   return (
     <div className="loading-container-111">
       <div className="spinner">
-        <img src="/path/to/your/image.png" alt="Loading" />
+        <img src="/images/logo.svg" alt="Loading" />
       </div>
     </div>
   );

@@ -136,6 +136,8 @@ const UserFilePermissionCheck = (userId, fileId) => {
     throw new Error(`User does not have permission to file \n (userId: ${userId}, fileId: ${fileId})`);
 }
 
+
+/// TODO add rating to the query
 const getFile = async (userId, fileId) => {
     try {
         UserFilePermissionCheck(userId, fileId)
@@ -145,7 +147,7 @@ const getFile = async (userId, fileId) => {
             LEFT JOIN video v  on v.file_id = f.file_id
             LEFT JOIN image i  on i.file_id = f.file_id
             LEFT JOIN audio a  on a.file_id = f.file_id
-            LEFT JOIN dcument d  on d.file_id = f.file_id
+            LEFT JOIN document d  on d.file_id = f.file_id
             WHERE f.file_id = $1
         `
         const result = await db.query(sql, [fileId]);

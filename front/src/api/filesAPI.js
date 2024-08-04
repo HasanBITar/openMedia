@@ -13,6 +13,13 @@ export const filesAPI = createApi({
                 params: { type, page },
             }),
         }),
+
+        getFile: builder.query({
+            query: ({fileId}) => ({
+                url: API.getFile + fileId,
+                method: 'GET',
+            }),
+        })
         // addVideo: builder.mutation({
         //     query: (newVideo) => ({
         //         url: 'videos',
@@ -38,7 +45,5 @@ export const filesAPI = createApi({
 
 export const {
     useGetFilesQuery,
-    useAddVideoMutation,
-    useUpdateVideoMutation,
-    useDeleteVideoMutation,
+    useGetFileQuery,
 } = filesAPI;
