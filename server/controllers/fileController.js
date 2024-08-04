@@ -96,9 +96,22 @@ const streamVideo = async (req, res) => {
     });
 }
 
+const getFile = async ({req, res}) => {
+    try {
+        const fileId = req.params.fileId;
+        const [ok, file]= await fileModel.getFile(req.userId, fileId)
+        if (!ok) return errorRespone(result, res);
+        res.status(200).json(file);
+    }
+    catch (err) {
+        errorRespone(err, res);
+    }
+}
+
 module.exports = {
     uploadProfile,
     uploadFile,
     getUserFiles,
-    streamVideo
+    streamVideo,
+    getFile,
 };

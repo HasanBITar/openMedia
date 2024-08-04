@@ -9,7 +9,7 @@ import FileSidebar from '../components/sidebar/FileSidebar';
 const VideoPage = ({ }) => {
   const { videoId } = useParams();
   const [streamUrl, setStreamUrl] = useState('');
-
+  // const file = 
   useEffect(() => {
     const url = API.steamVideo + videoId;
     console.log(url);

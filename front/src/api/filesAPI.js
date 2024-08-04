@@ -13,26 +13,26 @@ export const filesAPI = createApi({
                 params: { type, page },
             }),
         }),
-        addVideo: builder.mutation({
-            query: (newVideo) => ({
-                url: 'videos',
-                method: 'POST',
-                body: newVideo,
-            }),
-        }),
-        updateVideo: builder.mutation({
-            query: ({ id, ...patch }) => ({
-                url: `videos/${id}`,
-                method: 'PUT',
-                body: patch,
-            }),
-        }),
-        deleteVideo: builder.mutation({
-            query: (id) => ({
-                url: `videos/${id}`,
-                method: 'DELETE',
-            }),
-        }),
+        // addVideo: builder.mutation({
+        //     query: (newVideo) => ({
+        //         url: 'videos',
+        //         method: 'POST',
+        //         body: newVideo,
+        //     }),
+        // }),
+        // updateVideo: builder.mutation({
+        //     query: ({ id, ...patch }) => ({
+        //         url: `videos/${id}`,
+        //         method: 'PUT',
+        //         body: patch,
+        //     }),
+        // }),
+        // deleteVideo: builder.mutation({
+        //     query: (id) => ({
+        //         url: `videos/${id}`,
+        //         method: 'DELETE',
+        //     }),
+        // }),
     }),
 });
 
