@@ -1,4 +1,3 @@
-
 import { useDispatch } from "react-redux";
 import { openAddGroupModal } from "../../store/UISlice";
 import AddGroupModal from "../../Modals/AddGroupModal";
@@ -19,11 +18,11 @@ const Field = ({ id, name, count, date, action }) => {
             </td>
             <td className="px-6 py-4">
                 <div className="flex items-center">
-                    date
+                    {date}
                 </div>
             </td>
             <td className="px-6 py-4">
-                <button onClick={action(id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
+                <button onClick={() => action(id)} className="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
             </td>
         </tr>
     )
@@ -31,7 +30,7 @@ const Field = ({ id, name, count, date, action }) => {
 
 const GroupSubPage = () => {
     const dispatch = useDispatch();
-    const openAddGroupModal = () => {
+    const openAddGroupModalHandler = () => {
         dispatch(openAddGroupModal())
     }
 
@@ -58,11 +57,12 @@ const GroupSubPage = () => {
             <>
                 {data.data.map((item) => (
                     <Field
-                        // id={item.id}
-                        // name={}
-                        // count={}
-                        // date={}
-                        // action={}
+                        key={item.id}
+                        id={item.id}
+                        name={item.name}
+                        count={item.count}
+                        date={item.date}
+                        action={(id) => console.log(`Delete group with id ${id}`)} // Replace with actual delete action
                     />
                 ))}
             </>
@@ -74,7 +74,7 @@ const GroupSubPage = () => {
             <AddGroupModal />
             <div className="p-5 lg:p-8 relative overflow-x-auto shadow-md sm:rounded-lg transition-all ease-in-out">
                 <div className="flex justify-end mb-3">
-                    <button onClick={openAddGroupModal}
+                    <button onClick={openAddGroupModalHandler}
                         className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
                         text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
                     > Create Group
