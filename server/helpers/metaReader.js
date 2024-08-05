@@ -1,5 +1,9 @@
 const ffmpeg = require('fluent-ffmpeg');
 const path = require('path');
+const sharp = require('sharp');
+const fs = require('fs');
+
+
 /**
  * Get video metadata.
  * @param {string} filePath - Path to the video file.
@@ -42,21 +46,44 @@ async function videoReader(filePath) {
   });
 }
 
-/**
- * Extract a thumbnail at 30% of the video duration.
- * @param {string} filePath - Path to the video file.
- * @param {string} outputPath - Path to save the thumbnail image.
- */
-async function extractVideoThumbnail(filePath) {
-  try {
+async function imageReader(filePath) {
+  return new Promise((resolve, reject) => {
+    sharp(filePath)
+      .metadata()
+      .then(metadata => {
+        console.log('image meta', metadata);
+        const info = {
+          width: metadata.width,
+          height: metadata.height,
+          bitDepth: 8,
+        };
 
+        const fileName = path.basename(filePath, path.extname(filePath)) + '_thumbnail.jpg';
+        const thumbnailPath = path.join('./uploads/thumbnails/', fileName);
 
-  } catch (error) {
-    console.error('Error getting video info:', error);
-  }
+        // Ensure the thumbnail directory exists
+        fs.mkdirSync(path.dirname(thumbnailPath), { recursive: true });
+
+        // Create a thumbnail
+        sharp(filePath)
+          .resize({ width: 200 }) // Resize to width 200px, maintaining aspect ratio
+          .toFile(thumbnailPath)
+          .then(() => {
+            console.log('Image thumbnail created:', thumbnailPath);
+            resolve([info, fileName]);
+          })
+          .catch(err => {
+            console.error('Error creating thumbnail:', err);
+            reject(err);
+          });
+      })
+      .catch(err => {
+        reject(err);
+      });
+  });
 }
 
 module.exports = {
   videoReader,
-  extractVideoThumbnail,
+  imageReader
 }

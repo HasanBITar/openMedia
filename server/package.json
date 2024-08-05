@@ -52,6 +52,7 @@
         "serve-favicon": "^2.5.0",
         "serve-index": "^1.9.1",
         "session-file-store": "^1.5.0",
+        "sharp": "^0.33.4",
         "yargs": "^16.1.1"
     },
     "devDependencies": {
