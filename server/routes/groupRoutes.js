@@ -12,6 +12,9 @@ router.get('/:groupId', verifyToken, groupController.getUsersOfGroup);
 router.post('/:groupId', verifyToken, groupController.addUserToGroup);
 router.delete('/:groupId/:userId', verifyToken, groupController.deleteUserFromGroup);
 
+http://localhost:5000/api/v1/group/non-members/29b0e7bb-e3a1-460c-b9e8-6e90a4f70e25
+router.get('/non-members/:groupId', verifyToken, groupController.getNonMembers)
+
 
 
 module.exports = router;

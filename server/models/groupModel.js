@@ -96,11 +96,34 @@ const addGroup = async (groupName, createdBy) => {
 };
 
 
+const getNonMembers = async (groupId, userId) => {
+    console.log('Getting users not in group', groupId);
+    // try {
+        const sql = `
+            SELECT u.*
+            FROM "user" u
+            WHERE u.user_id NOT IN (
+                SELECT ug.user_id
+                FROM "user_group" ug
+                WHERE ug.group_id = $1
+            )
+            AND u.user_id != $2
+        `;
+        const result = await db.query(sql, [groupId, userId]);
+        return [true, result.rows.map(i => rename(i))];
+    // } catch (err) {
+    //     console.error('Error:', err);
+    //     return [false, err];
+    // }
+};
+
+
 module.exports = {
     getAllGroups,
     getUsersOfGroup,
     deleteUserFromGroup,
     addUserToGroup,
     deleteGroup,
-    addGroup
+    addGroup,
+    getNonMembers
 };

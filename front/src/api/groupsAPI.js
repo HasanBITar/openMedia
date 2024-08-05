@@ -48,6 +48,14 @@ export const groupsAPI = createApi({
         method: 'DELETE',
       }),
     }),
+
+    /// users 
+    getNonMembers: builder.query({
+      query: ({groupId}) => ({
+        url: `${API.getNonMembers}${groupId}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -59,5 +67,7 @@ export const {
   useGetGroupInfoQuery,
   useDeleteUserFromGroupMutation,
   useAddUsersToGroupMutation,
+
+  useGetNonMembersQuery,
   
 } = groupsAPI;

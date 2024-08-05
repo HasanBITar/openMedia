@@ -9,6 +9,7 @@ export const API = {
   getFiles: "file/",
   getFile: "file/",
   thumbnail: BACKEND_API + "thumbnails/",
+  images: BACKEND_API + "images/",
   steamVideo: BACKEND_API + "file/videos/",
 
   getGroups: "group/",

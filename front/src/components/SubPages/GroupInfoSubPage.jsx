@@ -73,7 +73,7 @@ const GroupInfoSubPage = ({ groupId }) => {
 
     return (
         <>
-            <AddUserToGroupModal />
+            <AddUserToGroupModal groupId={groupId} />
             <div className="p-5 lg:p-8 relative overflow-x-auto shadow-md sm:rounded-lg transition-all ease-in-out">
                 <div className="flex justify-between mb-3">
                     <div className="bg-gray-800">
