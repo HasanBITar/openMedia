@@ -9,6 +9,7 @@ const FileInputHelper = ({ label, className, setValue }) => {
         if (item.uploadResponse && item.uploadResponse.data) {
             setFileName(item.file.name);
             setValue(item.uploadResponse.data);
+            window.location.reload();
         }
     });
 

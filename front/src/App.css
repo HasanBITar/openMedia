@@ -185,6 +185,7 @@ body {
 
 .multiSelectContainer ul {
   border: none !important;
+  @apply bg-gray-menu rounded-lg
 }
 
 .multiSelectContainer li {
@@ -193,3 +194,13 @@ body {
   @apply transition-all ease-in-out bg-gray-menu
 }
 
+.multiSelectContainer li:hover {
+  @apply !bg-gray-hover
+}
+.optionListContainer {
+  @apply !rounded-lg;
+}
+
+.multiSelectContainer .chip {
+  
+}
