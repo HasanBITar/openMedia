@@ -11,7 +11,7 @@ import SigninPage from "./pages/SigninPage";
 import SignupPage from "./pages/SignupPage";
 import LandingPage from "./pages/LandingPage";
 import VideoLib from "./pages/VideoLib";
-import Images from "./pages/Images";
+import ImageLib from "./pages/ImageLib";
 import AudioLib from "./pages/AudioLib";
 import Documents from "./pages/Documents";
 import VideoPage from "./pages/VideoPage";
@@ -22,9 +22,7 @@ import ProtectedRoute from "./store/ProtectedRoute";
 import { verifyToken } from "./store/authSlice";
 import Random from "./random";
 
-
 function App() {
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +37,7 @@ function App() {
             <Route path="home" element={<HomePage />} />
             <Route path="videos" element={<VideoLib />} />
             <Route path="videos/:videoId" element={<VideoPage />} />
-            <Route path="images" element={<Images />} />
+            <Route path="images" element={<ImageLib />} />
             <Route path="music" element={<AudioLib />} />
             <Route path="documents" element={<Documents />} />
             <Route path="settings" element={<SettingsPage />} />
