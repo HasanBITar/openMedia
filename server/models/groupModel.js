@@ -6,7 +6,7 @@ const getAllGroups = async (userId) => {
     try {
         const sql = `
             SELECT * FROM "group" g
-            WHERE g.userId = $1
+            WHERE g.created_by = $1
         `;
         const result = await db.query(sql, [userId]);
         return [true, result.rows.map(i => rename(i))];

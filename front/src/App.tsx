@@ -24,7 +24,9 @@ import Random from "./random";
 
 
 function App() {
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(verifyToken());
   }, [dispatch]);

@@ -38,8 +38,8 @@ const GroupSubPage = () => {
     const { data, error, isLoading } = useGetGroupsQuery();
 
     useEffect(() => {
-        console.log(data);
-    }, [isLoading])
+        console.log("group data", data);
+    }, [data, isLoading])
 
     const renderContent = () => {
         if (isLoading) {
@@ -98,7 +98,7 @@ const GroupSubPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {renderContent}
+                        {renderContent()}
                     </tbody>
                 </table>
             </div>
