@@ -26,18 +26,31 @@ export function formatString(str, length = 35) {
 }
 
 
-export function extractFilename(formattedString) {
+export function extractFilename(formattedString,removeExtension=false) {
     try {
+        // Find the position of the first double underscore
         const firstUnderscoreIndex = formattedString.indexOf('__');
-        const filename = formattedString.substring(firstUnderscoreIndex + 2);
+        
+        // Extract the filename starting from the character after the double underscore
+        let filename = formattedString.substring(firstUnderscoreIndex + 2);
+        
+       
+        // Find the position of the last dot to remove the extension
+        if(removeExtension)
+            {
+
+                const lastDotIndex = filename.lastIndexOf('.');
+                if (lastDotIndex !== -1) {
+                    filename = filename.substring(0, lastDotIndex);
+                }
+            }
+                
         return filename;
-    }
-    catch (err) {
+    } catch (err) {
         console.error(err);
-        return "unknow name";
+        return "unknown name";
     }
 }
-
 
 export function formatBytes(bytes, decimals = 2) {
     if (bytes === 0) return '0 Bytes';

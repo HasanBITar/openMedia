@@ -12,7 +12,7 @@ const data2 = [
     video_id: "svd329esvdsdv1",
     thumbnail: "images/thumb.jpeg",
     fileName:
-      "random video sdvksdv sdvksdv sdv kblos osiw isvd svvsd iwev svdisdv sjv jsdvdj sdvj jsvd jwro q;b wo wjv wvh",
+      "random video",
     duration: 1000,
     durationWatched: 20,
     createDate: "12/10/2024",
@@ -78,7 +78,6 @@ const ImageSubPage = () => {
     if (!data || data.data.length === 0) {
       return <div>No Images found.</div>;
     }
-
     return (
       <>
         {data.data.map((item) => (
@@ -118,7 +117,7 @@ const ImageSubPage = () => {
         ))}
       </HomeSection>
       <LibraryFeatured title="Your Images">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6 gap-4">
           {renderContent()}
         </div>
       </LibraryFeatured>
