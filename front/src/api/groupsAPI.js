@@ -48,6 +48,14 @@ export const groupsAPI = createApi({
         method: 'DELETE',
       }),
     }),
+
+    /// users 
+    getAllUsers: builder.query({
+      query: () => ({
+        url: `${API.getAllUsers}`,
+        method: 'GET',
+      }),
+    }),
   }),
 });
 
@@ -59,5 +67,7 @@ export const {
   useGetGroupInfoQuery,
   useDeleteUserFromGroupMutation,
   useAddUsersToGroupMutation,
+
+  useGetAllUsersQuery,
   
 } = groupsAPI;

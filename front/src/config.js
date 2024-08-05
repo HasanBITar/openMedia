@@ -19,6 +19,8 @@ export const API = {
     getGroupInfo: 'group/', ///group/:groupId
     addUserToGroup: 'group/', //group/:groupId post user
     deleteUserFromGroup: 'group/', //groupId/userId
+
+    getAllUsers: 'user/',
 }
 
 
