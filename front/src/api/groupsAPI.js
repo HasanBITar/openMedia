@@ -12,16 +12,27 @@ export const groupsAPI = createApi({
         method: 'GET',
       }),
     }),
-    getUsersOfGroup: builder.query({
-      query: (groupId) => ({
-        url: `${API.getUsersOfGroup}${groupId}`,
-        method: 'GET',
+    
+    addGroup: builder.mutation({
+      query: (newGroup) => ({
+        url: `${API.addGroup}`,
+        method: 'POST',
+        body: newGroup,
       }),
     }),
-    deleteUserFromGroup: builder.mutation({
-      query: ({groupId, userId}) => ({
-        url: `${API.deleteUserFromGroup}${groupId}${userId}`,
+    
+    deleteGroup: builder.mutation({
+      query: (groupId) => ({
+        url: `${API.deleteGroup}${groupId}`,
         method: 'DELETE',
+      }),
+    }),
+
+    ////// group info 
+    getGroupInfo: builder.query({
+      query: (groupId) => ({
+        url: `${API.getGroupInfo}${groupId}`,
+        method: 'GET',
       }),
     }),
     addUserToGroup: builder.mutation({
@@ -31,17 +42,10 @@ export const groupsAPI = createApi({
         body: { userId },
       }),
     }),
-    deleteGroup: builder.mutation({
-      query: (groupId) => ({
-        url: `${API.deleteGroup}${groupId}`,
+    deleteUserFromGroup: builder.mutation({
+      query: ({ groupId, userId }) => ({
+        url: `${API.deleteUserFromGroup}${groupId}${userId}`,
         method: 'DELETE',
-      }),
-    }),
-    addGroup: builder.mutation({
-      query: (newGroup) => ({
-        url: `${API.addGroup}`,
-        method: 'POST',
-        body: newGroup,
       }),
     }),
   }),
@@ -49,9 +53,10 @@ export const groupsAPI = createApi({
 
 export const {
   useGetGroupsQuery,
-  useGetUsersOfGroupQuery,
+  useAddGroupMutation,
+  useDeleteGroupMutation,
+  
+  useGetGroupInfoQuery,
   useDeleteUserFromGroupMutation,
   useAddUserToGroupMutation,
-  useDeleteGroupMutation,
-  useAddGroupMutation,
 } = groupsAPI;

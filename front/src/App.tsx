@@ -42,6 +42,7 @@ function App() {
             <Route path="documents" element={<Documents />} />
             <Route path="settings" element={<SettingsPage />} />
             <Route path="groups" element={<SettingsPage />} />
+            <Route path="groups/:groupId" element={<SettingsPage />} />
             <Route path="tags" element={<SettingsPage />} />
           </Route>
         </Route>

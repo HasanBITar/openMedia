@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { openAddGroupModal } from "../../store/UISlice";
 import AddGroupModal from "../../Modals/AddGroupModal";
-import { useGetGroupsQuery } from "../../api/groupsAPI";
+import { usegetGroupInfoQuery, useGetGroupsQuery } from "../../api/groupsAPI";
 import { useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const Field = ({ id, name, date, action }) => {
     return (
@@ -29,21 +29,17 @@ const Field = ({ id, name, date, action }) => {
     )
 }
 
-const GroupSubPage = () => {
+const GroupInfoSubPage = ({ groupId }) => {
     const dispatch = useDispatch();
     const openAddGroupModalHandler = () => {
         dispatch(openAddGroupModal())
     }
 
-    const { data, error, isLoading } = useGetGroupsQuery();
+    const { data, error, isLoading } = usegetGroupInfoQuery({groupId});
 
     useEffect(() => {
         console.log("group data", data);
     }, [data, isLoading])
-
-    const handleDeleteGroup = (groupId) => {
-        
-    }
 
     const renderContent = () => {
         if (isLoading) {
@@ -66,7 +62,7 @@ const GroupSubPage = () => {
                         id={item.groupId}
                         name={item.groupName}
                         date={item.createDate}
-                        action={handleDeleteGroup(id)}
+                        action={(id) => console.log(`Delete group with id ${id}`)} // Replace with actual delete action
                     />
                 ))}
             </>
@@ -107,4 +103,4 @@ const GroupSubPage = () => {
     )
 }
 
-export default GroupSubPage;
+export default GroupInfoSubPage;
