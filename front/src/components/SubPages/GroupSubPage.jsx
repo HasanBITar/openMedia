@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
 import { openAddGroupModal } from "../../store/UISlice";
 import AddGroupModal from "../../Modals/AddGroupModal";
-import { useGetGroupsQuery } from "../../api/groupsAPI";
+import { useGetGroupsQuery, useDeleteGroupMutation } from "../../api/groupsAPI"; 
 import { useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const Field = ({ id, name, date, action }) => {
     return (
@@ -35,14 +35,20 @@ const GroupSubPage = () => {
         dispatch(openAddGroupModal())
     }
 
-    const { data, error, isLoading } = useGetGroupsQuery();
+    const { data, error, isLoading, refetch } = useGetGroupsQuery(); 
+    const [deleteGroup] = useDeleteGroupMutation(); 
 
     useEffect(() => {
         console.log("group data", data);
     }, [data, isLoading])
 
-    const handleDeleteGroup = (groupId) => {
-        
+    const handleDeleteGroup = async (groupId) => { 
+        try {
+            await deleteGroup(groupId).unwrap(); 
+            refetch(); 
+        } catch (error) {
+            console.error("Failed to delete the group: ", error);
+        }
     }
 
     const renderContent = () => {
@@ -66,7 +72,7 @@ const GroupSubPage = () => {
                         id={item.groupId}
                         name={item.groupName}
                         date={item.createDate}
-                        action={handleDeleteGroup(id)}
+                        action={handleDeleteGroup} // Changed line
                     />
                 ))}
             </>

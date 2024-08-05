@@ -35,11 +35,11 @@ export const groupsAPI = createApi({
         method: 'GET',
       }),
     }),
-    addUserToGroup: builder.mutation({
-      query: ({ groupId, userId }) => ({
+    addUsersToGroup: builder.mutation({
+      query: ({ groupId, userIds }) => ({
         url: `${API.addUserToGroup}${groupId}`,
         method: 'POST',
-        body: { userId },
+        body: { userIds },
       }),
     }),
     deleteUserFromGroup: builder.mutation({
@@ -58,5 +58,6 @@ export const {
   
   useGetGroupInfoQuery,
   useDeleteUserFromGroupMutation,
-  useAddUserToGroupMutation,
+  useAddUsersToGroupMutation,
+  
 } = groupsAPI;

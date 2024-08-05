@@ -39,7 +39,7 @@ const ProfielMenu = ({ isAdmin }) => {
       >
         <img
           className="w-9 h-9 rounded-full"
-          src={photo || "./images/user-profile.png"}
+          src={photo || "/images/user-profile.png"}
           alt="user photo"
         />
       </button>

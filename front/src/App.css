@@ -171,3 +171,25 @@ body {
   75% { transform: rotate(270deg); animation-timing-function: ease-out; }
   100% { transform: rotate(360deg); animation-timing-function: ease-in-out; }
 }
+
+
+.search-wrapper.searchWrapper {
+  border: none;
+  border-radius: .5rem;
+}
+
+.search-wrapper.searchWrapper input {
+  width: 100%;
+  padding: .3rem;
+}
+
+.multiSelectContainer ul {
+  border: none !important;
+}
+
+.multiSelectContainer li {
+  width: 100%;
+  padding: .3rem;
+  @apply transition-all ease-in-out bg-gray-menu
+}
+

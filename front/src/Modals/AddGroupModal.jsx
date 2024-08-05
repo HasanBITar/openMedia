@@ -6,6 +6,7 @@ import { useAddGroupMutation } from "../api/groupsAPI";
 import Modal from "./Modal";
 import { FaUserGroup } from "react-icons/fa6";
 import ValidatedInput from "../components/inputs/ValidatedInput";
+import { useNavigate } from "react-router-dom";
 
 const AddGroupModal = () => {
     const isAddGroupModalOpen = useSelector((state) => state.UI.isAddGroupModalOpen);
@@ -19,6 +20,8 @@ const AddGroupModal = () => {
         e.preventDefault();
         if (isGroupNameValid) {
             await addGroup({ name: groupName });
+            window.location.reload();
+            const navigate = useNavigate();
             dispatch(closeAddGroupModal());
         } else {
             alert('Check your inputs.');

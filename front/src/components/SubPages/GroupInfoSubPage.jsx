@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
-import { openAddGroupModal } from "../../store/UISlice";
-import AddGroupModal from "../../Modals/AddGroupModal";
-import { usegetGroupInfoQuery, useGetGroupsQuery } from "../../api/groupsAPI";
+import { openAddUserToGroupModal } from "../../store/UISlice";
+import AddUserToGroupModal from "../../Modals/AddUserToGroupModal";
+import { useGetGroupInfoQuery, useGetGroupsQuery } from "../../api/groupsAPI";
 import { useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
 import { Link } from 'react-router-dom'
 
-const Field = ({ id, name, date, action }) => {
+const Field = ({ id, name, email, date, action }) => {
     return (
         <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all ease-in-out">
             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -14,7 +14,7 @@ const Field = ({ id, name, date, action }) => {
                     <Link to={id}>
                         <div className="text-base font-semibold">{name}</div>
                     </Link>
-                    {/* <div className="font-normal text-gray-500">neil.sims@flowbite.com</div> */}
+                    <div className="font-normal text-gray-500">{email}</div>
                 </div>
             </th>
             <td className="px-6 py-4">
@@ -30,12 +30,14 @@ const Field = ({ id, name, date, action }) => {
 }
 
 const GroupInfoSubPage = ({ groupId }) => {
+    console.log('info group', groupId)
     const dispatch = useDispatch();
-    const openAddGroupModalHandler = () => {
-        dispatch(openAddGroupModal())
+    const openModalHandler = () => {
+        console.log("sdsdvsdv")
+        dispatch(openAddUserToGroupModal())
     }
 
-    const { data, error, isLoading } = usegetGroupInfoQuery({groupId});
+    const { data, error, isLoading } = useGetGroupInfoQuery(groupId);
 
     useEffect(() => {
         console.log("group data", data);
@@ -51,7 +53,7 @@ const GroupInfoSubPage = ({ groupId }) => {
         }
 
         if (!data || data.length === 0) {
-            return <tr><td colSpan={4} className="text-center">No groups found.</td></tr>;
+            return <tr><td colSpan={4} className="text-center">No users found.</td></tr>;
         }
 
         return (
@@ -71,13 +73,13 @@ const GroupInfoSubPage = ({ groupId }) => {
 
     return (
         <>
-            <AddGroupModal />
+            <AddUserToGroupModal />
             <div className="p-5 lg:p-8 relative overflow-x-auto shadow-md sm:rounded-lg transition-all ease-in-out">
                 <div className="flex justify-end mb-3">
-                    <button onClick={openAddGroupModalHandler}
+                    <button onClick={openModalHandler}
                         className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
                         text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800`}
-                    > Create Group
+                    > Add Users
                     </button>
                 </div>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">

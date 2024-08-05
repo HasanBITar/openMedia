@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   isUploadModalOpen: false,
   isAddGroupModalOpen: false,
+  isAddUserToGroupModal: false,
 };
 
 const UISlice = createSlice({
@@ -22,6 +23,15 @@ const UISlice = createSlice({
     closeAddGroupModal(state) {
       state.isAddGroupModalOpen = false;
     },
+
+    ////
+    openAddUserToGroupModal(state) {
+      state.isAddUserToGroupModal = true;
+      console.log('opennnnn')
+    },
+    closeAddUserToGroupModal(state) {
+      state.isAddUserToGroupModal = false;
+    }
   },
 });
 
@@ -31,6 +41,9 @@ export const {
   
   openAddGroupModal,
   closeAddGroupModal,
+
+  openAddUserToGroupModal,
+  closeAddUserToGroupModal,
 
 } = UISlice.actions;
 
