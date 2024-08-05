@@ -59,16 +59,32 @@ const deleteGroup = async (req, res) => {
 };
 
 const addGroup = async (req, res) => {
-    // try {
+    try {
         console.log("agroup req", req.body);
         const {name} = req.body;
         const [ok, result] = await groupModel.addGroup(name, req.userId);
         if(!ok) return errorRespone(result, res);
         res.status(201).json(result);
-    // } catch (err) {
+    } catch (err) {
+        errorRespone(err, res);
+    }
+};
+
+const getNonMembers = async (req, res) => {
+    const { groupId } = req.params;
+    const x = await groupModel.getNonMembers(groupId, req.userId);
+    console.log(x);
+    // return;
+    const [ok, result] = await groupModel.getNonMembers(groupId, req.userId);
+    if(!ok) return errorRespone(err, res);
+    res.status(200).json(result)
+    // try {
+
+    // }
+    // catch (err) {
     //     errorRespone(err, res);
     // }
-};
+}
 
 module.exports = {
     getAllGroups,
@@ -77,4 +93,5 @@ module.exports = {
     addUserToGroup,
     deleteGroup,
     addGroup,
+    getNonMembers
 };
