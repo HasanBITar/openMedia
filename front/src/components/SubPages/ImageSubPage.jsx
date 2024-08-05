@@ -51,12 +51,9 @@ const data2 = [
   },
 ];
 
-const ImageSubPage = () => {
+const ImageSubPage = ({ data, error, isLoading } ) => {
   const [page, setPage] = useState(1);
-  const { data, error, isLoading } = useGetFilesQuery({
-    type: fileTypes.image,
-    page,
-  });
+  console.log(data);
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
