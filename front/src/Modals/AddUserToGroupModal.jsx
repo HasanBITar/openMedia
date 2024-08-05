@@ -27,7 +27,6 @@ const AddUserToGroupModal = () => {
         if (isGroupNameValid) {
             await addUsers({ name: groupName });
             window.location.reload();
-            const navigate = useNavigate();
             dispatch(closeAddUserToGroupModal());
         } else {
             alert('Check your inputs.');

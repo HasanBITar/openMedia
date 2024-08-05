@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
 import Multiselect from 'multiselect-react-dropdown';
 
-const SearchDropdown = ({ setValue, hideChips }) => {
-  const [options, setOptions] = useState([
-    { name: 'Alice', email: 'alice@example.com' },
-    { name: 'Bob', email: 'bob@example.com' },
-    { name: 'Charlie', email: 'charlie@example.com' }
-  ]);
+const SearchDropdown = ({ data, setValue, hideChips }) => {
+  const [options, setOptions] = useState([]);
 
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -30,8 +26,7 @@ const SearchDropdown = ({ setValue, hideChips }) => {
   };
 
   const style = {
-    chips: { background: "bg-gray-menu" },
-    searchBox: { border: "none", "border-bottom": "1px solid blue", "border-radius": "0px" }
+    chips: { display: "none" },
   }
 
   return (
@@ -46,7 +41,7 @@ const SearchDropdown = ({ setValue, hideChips }) => {
         placeholder='Type user name'
         className='w-full bg-gray-input focus:outline-none focus:border-none border-none ring-0 outline-none rounded-lg'
         id='myRandomSearch'
-        // style={style}
+        style={hideChips? style : {}}
       />
     </div>
   );
