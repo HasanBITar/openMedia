@@ -17,7 +17,7 @@ import Documents from "./pages/Documents";
 import VideoPage from "./pages/VideoPage";
 import LoadingPage from "./pages/LoadingPage";
 import SettingsPage from "./pages/SettingsPage";
-
+import ImageViewer from "./components/viewers/ImageViewer";
 import ProtectedRoute from "./store/ProtectedRoute";
 import { verifyToken } from "./store/authSlice";
 import Random from "./random";
