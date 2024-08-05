@@ -80,6 +80,7 @@ const deleteGroup = async (groupId) => {
 };
 
 const addGroup = async (groupName, createdBy) => {
+    console.log('add group', groupName, createdBy)
     try {
         const sql = `
             INSERT INTO "group" (group_name, created_by)

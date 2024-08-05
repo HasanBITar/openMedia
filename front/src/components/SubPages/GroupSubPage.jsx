@@ -3,8 +3,9 @@ import { openAddGroupModal } from "../../store/UISlice";
 import AddGroupModal from "../../Modals/AddGroupModal";
 import { useGetGroupsQuery } from "../../api/groupsAPI";
 import { useEffect } from "react";
+import { formatDate } from "../../utils/helpers";
 
-const Field = ({ id, name, count, date, action }) => {
+const Field = ({ id, name, date, action }) => {
     return (
         <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all ease-in-out">
             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -14,11 +15,8 @@ const Field = ({ id, name, count, date, action }) => {
                 </div>
             </th>
             <td className="px-6 py-4">
-                {count}
-            </td>
-            <td className="px-6 py-4">
                 <div className="flex items-center">
-                    {date}
+                    {formatDate(date)}
                 </div>
             </td>
             <td className="px-6 py-4">
@@ -55,13 +53,12 @@ const GroupSubPage = () => {
 
         return (
             <>
-                {data.data.map((item) => (
+                {data.map((item) => (
                     <Field
-                        key={item.id}
-                        id={item.id}
-                        name={item.name}
-                        count={item.count}
-                        date={item.date}
+                        key={item.groupId}
+                        id={item.groupId}
+                        name={item.groupName}
+                        date={item.createDate}
                         action={(id) => console.log(`Delete group with id ${id}`)} // Replace with actual delete action
                     />
                 ))}
@@ -85,9 +82,6 @@ const GroupSubPage = () => {
                         <tr>
                             <th scope="col" className="px-6 py-3">
                                 Group
-                            </th>
-                            <th scope="col" className="px-6 py-3">
-                                Users
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Date

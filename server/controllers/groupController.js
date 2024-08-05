@@ -2,14 +2,14 @@ const groupModel = require('../models/groupModel');
 const { errorRespone } = require('../helpers/utils');
 
 const getAllGroups = async (req, res) => {
-    // try {
+    try {
         const [ok, groups] = await groupModel.getAllGroups(req.userId);
         if(!ok) return errorRespone(groups, res);
         console.log(groups);
         res.status(200).json(groups);
-    // } catch (err) {
-    //     errorRespone(err, res);
-    // }
+    } catch (err) {
+        errorRespone(err, res);
+    }
 };
 
 const getUsersOfGroup = async (req, res) => {
@@ -59,14 +59,15 @@ const deleteGroup = async (req, res) => {
 };
 
 const addGroup = async (req, res) => {
-    try {
-        const { groupName, createdBy } = req.body;
-        const [ok, result] = await groupModel.addGroup(groupName, createdBy);
+    // try {
+        console.log("agroup req", req.body);
+        const {name} = req.body;
+        const [ok, result] = await groupModel.addGroup(name, req.userId);
         if(!ok) return errorRespone(result, res);
         res.status(201).json(result);
-    } catch (err) {
-        errorRespone(err, res);
-    }
+    // } catch (err) {
+    //     errorRespone(err, res);
+    // }
 };
 
 module.exports = {
