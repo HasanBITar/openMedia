@@ -15,19 +15,23 @@ const ImageCard = ({
   type,
   createDate,
   scroll = true,
+  album = false,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const handleModal = () => {
-    if (showModal) setShowModal(false);
-    else setShowModal(true);
+    if (!showModal) setShowModal(true);
   };
+  const closeModal = () => {
+    if (showModal) setShowModal(false);
+  };
+
   const formatedTitle = formatString(title);
   const formatedDate = formatDate(createDate);
   const nameTitle = extractFilename(title, true);
-  console.log(`../../../../server/uploads/${title}`);
+
   return (
     <div
-      onClick={handleModal}
+      onClick={album ? "" : handleModal}
       className={
         scroll
           ? "snap-center md:snap-start scroll-mx-6 shrink-0 w-[80%] sm:w-72 md:w-80 lg:w-96"
@@ -52,7 +56,8 @@ const ImageCard = ({
       <div>
         <Viewer
           visible={showModal ? true : false}
-          images={[{ src: `${(API.thumbnail, title)}` }]}
+          images={[{ src: `${API.images + title}` }]}
+          onClose={closeModal}
         />
       </div>
     </div>
