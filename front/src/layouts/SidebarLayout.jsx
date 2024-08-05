@@ -1,3 +1,5 @@
+import { Children } from "react";
+
 const SidebarLayout = ({ sidebar: SidebarComponent, data, bg="bg-gray-800", children }) => {
     return (
         <>
@@ -12,7 +14,7 @@ const SidebarLayout = ({ sidebar: SidebarComponent, data, bg="bg-gray-800", chil
                     <div className="absolute inset-0"></div>
                     <div className="relative rounded-lg lg:rounded-xl overflow-auto">
                         <div className="overscroll-contain overflow-auto h-subpage mb-3 hide-scroll-bar">
-                            {children}
+                           {children}
                         </div>
                     </div>
                     <div className="absolute inset-0 pointer-events-none rounded-md"></div>

@@ -33,7 +33,7 @@ const VideoCard = ({ id, thumbnail, title, duration, durationWatched, createDate
             {/* Video Info */}
             <div className="mt-2 px-1">
                 <h3 className="text-lg font-medium text-white two-line-text">{formatedTitle}</h3>
-                <p className="text-md font-medium text-gray-400">{formatedDate}</p>
+                <p className="text-md font-medium text-gray-400">{createDate}</p>
             </div>
         </Link>
     );
