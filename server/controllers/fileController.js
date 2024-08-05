@@ -38,8 +38,13 @@ const uploadFile = async (req, res) => {
         let metadata;
         if (type === fileModel.fileTypes.video) {
             [metadata, thumbnail] = await metaReader.videoReader(file.path);
+
             // return console.log(metadata);
         }
+        if (type === fileModel.fileTypes.image) {
+            [metadata, thumbnail] = await metaReader.imageReader(file.path);
+        }
+        
         const [ok, result] = await fileModel.addFile(req.userId, req.file.filename, type, req.file.size, thumbnail, metadata);
         if (!ok) return errorRespone(result, res);
         res.status(200).json(result);
