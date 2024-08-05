@@ -66,7 +66,7 @@ async function imageReader(filePath) {
 
         // Create a thumbnail
         sharp(filePath)
-          .resize({ width: 200 }) // Resize to width 200px, maintaining aspect ratio
+          .resize({ width: 400 }) // Resize to width 200px, maintaining aspect ratio
           .toFile(thumbnailPath)
           .then(() => {
             console.log('Image thumbnail created:', thumbnailPath);
