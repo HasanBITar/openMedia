@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "ip.bat && vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
@@ -16,6 +16,7 @@
     "@vidstack/react": "^1.11.30",
     "axios": "^1.7.3",
     "datepicker": "^0.0.0",
+    "dotenv": "^16.4.5",
     "flowbite": "^2.5.0",
     "flowbite-react": "^0.10.1",
     "moment": "^2.30.1",

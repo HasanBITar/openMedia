@@ -3,7 +3,7 @@
 const LandingPage = () => {
     return (
         <div className="bg-black text-white">
-            <div className="bg-black pb-6 sm:pb-8 lg:pb-12 h-screen">
+            <div className="bg-black pb-6 sm:pb-8 lg:pb-12 ">
                 <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
                     <header className="mb-8 flex items-center justify-between py-4 md:mb-12 md:py-8 xl:mb-16">
 
@@ -102,8 +102,8 @@ const LandingPage = () => {
 
 
 
-            <div className="bg-[#121212] py-6 sm:py-8 lg:py-12 h-screen flex items-center">
-                <div className="mx-auto max-w-screen-2xl px-4 md:px-8">
+            <div className="bg-[#121212] py-6 sm:py-8 lg:py-12  flex items-center">
+                <div className="mx-auto max-w-screen-2xl px-4 md:px-8 mt-10">
 
                     <div className="mb-10 md:mb-16">
                         <h2 className="mb-4 text-center text-3xl font-bold text-blue-500 md:mb-6 lg:text-5xl">Our competitive advantage</h2>

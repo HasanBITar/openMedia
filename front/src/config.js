@@ -1,4 +1,7 @@
-export const BACKEND_API = "http://localhost:5000/api/v1/";
+export const BACKEND_API = `http://${import.meta.env.VITE_BACK_IP}:5000/api/v1/`;
+// export const BACKEND_API = "192.168.192.111:5000/api/v1/";
+
+console.log('BACKAPI', BACKEND_API);
 
 export const API = {
   signin: "auth/signin",
