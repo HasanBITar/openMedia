@@ -50,8 +50,8 @@ const GroupSubPage = () => {
             return <tr><td colSpan={4}>Error: {error.message}</td></tr>;
         }
 
-        if (!data || data.data.length === 0) {
-            return <tr><td colSpan={4}>No videos found.</td></tr>;
+        if (!data || data.length === 0) {
+            return <tr><td colSpan={4} className="text-center">No groups found.</td></tr>;
         }
 
         return (

@@ -22,8 +22,6 @@ export const getToken = () => {
   return localStorage.getItem('authToken');
 }
 
-
-
 const apiClient = axios.create({ baseURL: BACKEND_API });
 
 export const login = createAsyncThunk(API.signin, async (credentials, { rejectWithValue }) => {

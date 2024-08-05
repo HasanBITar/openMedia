@@ -7,9 +7,10 @@ import { useEffect, useState } from 'react';
 const ProtectedRoute = () => {
     const authState = useSelector(state => state.auth);
     const [state, setState] = useState(authState.status);
-    
+
 
     useEffect(() => {
+        console.log(authState)
         setState(authState.status);
     }, [authState.status]);
 
