@@ -3,6 +3,7 @@ import NavSearch from "../navbar/NavSearch";
 import TagCard from "../cards/TagCard";
 
 function TagSection() {
+  //INSERT TAG DATA HERE
   const [originalTags] = useState([
     { tag_id: "id1", name: "Tag1", color: "#000000" },
     { tag_id: "id2", name: "Tag2", color: "#00ff00" },

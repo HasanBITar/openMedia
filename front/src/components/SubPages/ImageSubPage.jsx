@@ -10,16 +10,15 @@ import { useEffect, useState } from "react";
 const data2 = [
   {
     video_id: "svd329esvdsdv1",
-    thumbnail: "images/thumb.jpeg",
-    fileName:
-      "random video",
+    thumbnail: "images/thumb5.jpeg",
+    fileName: "random video",
     duration: 1000,
     durationWatched: 20,
     createDate: "12/10/2024",
   },
   {
     video_id: "svd329esvdsdv2",
-    thumbnail: "/images/thumb.jpeg",
+    thumbnail: "/images/thumb1.jpeg",
     fileName: "random video",
     duration: 1000,
     durationWatched: 400,
@@ -27,7 +26,7 @@ const data2 = [
   },
   {
     video_id: "svd329esvdsdv3",
-    thumbnail: "/images/thumb.jpeg",
+    thumbnail: "/images/thumb2.jpeg",
     fileName: "random video",
     duration: 1000,
     durationWatched: 0,
@@ -35,7 +34,7 @@ const data2 = [
   },
   {
     video_id: "svd329esvdsdv4",
-    thumbnail: "/images/thumb.jpeg",
+    thumbnail: "/images/thumb3.jpeg",
     fileName: "random video",
     duration: 1000,
     durationWatched: 400,
@@ -43,7 +42,7 @@ const data2 = [
   },
   {
     video_id: "svd329esvdsdv5",
-    thumbnail: "/images/thumb.jpeg",
+    thumbnail: "/images/thumb4.jpeg",
     fileName: "random video",
     duration: 1000,
     durationWatched: 400,
@@ -51,7 +50,7 @@ const data2 = [
   },
 ];
 
-const ImageSubPage = ({ data, error, isLoading } ) => {
+const ImageSubPage = ({ data, error, isLoading }) => {
   const [page, setPage] = useState(1);
   console.log(data);
   useEffect(() => {
