@@ -94,6 +94,7 @@ const ImageSubPage = () => {
             durationWatched={item.durationWatched | 0}
             createDate={item.createDate}
             scroll={false}
+            album={false}
           />
         ))}
       </>
@@ -113,6 +114,7 @@ const ImageSubPage = () => {
             durationWatched={item.durationWatched}
             createDate={item.createDate}
             all={false}
+            album={true}
           />
         ))}
       </HomeSection>

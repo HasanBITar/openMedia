@@ -15,6 +15,7 @@ const ImageCard = ({
   type,
   createDate,
   scroll = true,
+  album = false,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const handleModal = () => {
@@ -24,10 +25,10 @@ const ImageCard = ({
   const formatedTitle = formatString(title);
   const formatedDate = formatDate(createDate);
   const nameTitle = extractFilename(title, true);
-  console.log(`../../../../server/uploads/${title}`);
+
   return (
     <div
-      onClick={handleModal}
+      onClick={album ? "" : handleModal}
       className={
         scroll
           ? "snap-center md:snap-start scroll-mx-6 shrink-0 w-[80%] sm:w-72 md:w-80 lg:w-96"
