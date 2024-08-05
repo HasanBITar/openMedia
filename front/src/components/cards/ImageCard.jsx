@@ -19,9 +19,12 @@ const ImageCard = ({
 }) => {
   const [showModal, setShowModal] = useState(false);
   const handleModal = () => {
-    if (showModal) setShowModal(false);
-    else setShowModal(true);
+    if (!showModal) setShowModal(true);
   };
+  const closeModal = () => {
+    if (showModal) setShowModal(false);
+  };
+
   const formatedTitle = formatString(title);
   const formatedDate = formatDate(createDate);
   const nameTitle = extractFilename(title, true);
@@ -53,7 +56,8 @@ const ImageCard = ({
       <div>
         <Viewer
           visible={showModal ? true : false}
-          images={[{ src: `${(API.thumbnail, title)}` }]}
+          images={[{ src: `${API.images + title}` }]}
+          onClose={closeModal}
         />
       </div>
     </div>
