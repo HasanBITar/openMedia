@@ -23,6 +23,7 @@ app.use('/api/v1/file', fileRoutes);
 app.use('/api/v1/group', groupRoutes);
 
 app.use('/api/v1/thumbnails', express.static(path.join(__dirname, 'uploads/thumbnails')));
+app.use('/api/v1/images', express.static(path.join(__dirname, 'uploads/')));
 
 app.get('/api/v1/protected', authenticateToken, (req, res) => {
   res.send('protected route');
