@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { openUploadModal } from '../../store/UISlice'
+import { logout } from '../../store/authSlice'
 
-const ProfielMenu = () => {
+const ProfielMenu = ({ isAdmin }) => {
   const authState = useSelector((state) => state.auth);
   const { username, email, photo } = authState.user;
   const dispatch = useDispatch();
@@ -20,6 +21,13 @@ const ProfielMenu = () => {
   const handleUploadClick = () => {
     setIsOpen(!isOpen);
     dispatch(openUploadModal());
+  };
+  
+  const handleAnyClick = () => { setIsOpen(!isOpen) }
+
+  const handleSignOut = () => {
+    dispatch(logout());
+    window.location.href = '/';
   };
 
   return (
@@ -48,25 +56,23 @@ const ProfielMenu = () => {
             </button>
           </div>
           <ul className="" aria-labelledby="user-menu-button">
+            {
+              isAdmin &&
+              <li>
+                <Link to="#" onClick={handleAnyClick} className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
+                  Dashboard
+                </Link>
+              </li>
+            }
             <li>
-              <Link to="#" className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
+              <Link to="settings" onClick={handleAnyClick} className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
                 Settings
               </Link>
             </li>
             <li>
-              <Link to="#" className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
-                Earnings
-              </Link>
-            </li>
-            <li>
-              <Link to="#" className="block px-4 py-2 text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
+              <button onClick={handleSignOut} className="block px-4 py-2 w-full text-left text-sm dark:hover:bg-gray-hover dark:text-gray-200 dark:hover:text-white">
                 Sign out
-              </Link>
+              </button>
             </li>
           </ul>
         </div>

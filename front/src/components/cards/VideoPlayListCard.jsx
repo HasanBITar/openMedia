@@ -9,7 +9,7 @@ const VideoPlayListCard = ({ id, thumbnail, title, duration, durationWatched, cr
   const formatedDate = formatDate(createDate);
   return (
     // TODO customize playlist card
-    <Link to={`/view/${id}`} className="snap-center md:snap-start scroll-mx-6 shrink-0 w-[80%] sm:w-72 md:w-80 lg:w-96">
+    <Link to={`/playlist/video/${id}`} className="snap-center md:snap-start scroll-mx-6 shrink-0 w-[80%] sm:w-72 md:w-80 lg:w-96">
       <div className="relative overflow-hidden rounded-md shadow-md bg-gray-800 shrink-0 image-container">
         {/* Thumbnail */}
         <div className="w-full h-0" style={{ paddingBottom: '56.25%' }}>

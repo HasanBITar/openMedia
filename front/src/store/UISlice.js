@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   isUploadModalOpen: false,
+  isAddGroupModalOpen: false,
 };
 
 const UISlice = createSlice({
@@ -14,8 +15,23 @@ const UISlice = createSlice({
     closeUploadModal(state) {
       state.isUploadModalOpen = false;
     },
+    /////
+    openAddGroupModal(state) {
+      state.isAddGroupModalOpen = true;
+    },
+    closeAddGroupModal(state) {
+      state.isAddGroupModalOpen = false;
+    },
   },
 });
 
-export const { openUploadModal, closeUploadModal } = UISlice.actions;
+export const { 
+  openUploadModal, 
+  closeUploadModal,
+  
+  openAddGroupModal,
+  closeAddGroupModal,
+
+} = UISlice.actions;
+
 export default UISlice.reducer;

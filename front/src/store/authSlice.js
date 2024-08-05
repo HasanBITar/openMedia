@@ -14,9 +14,15 @@ const setToken = (token) => {
   localStorage.setItem('authToken', token);
 }
 
+const deleteToken = () => {
+  localStorage.removeItem('authToken');
+}
+
 export const getToken = () => {
   return localStorage.getItem('authToken');
 }
+
+
 
 const apiClient = axios.create({ baseURL: BACKEND_API });
 
@@ -78,7 +84,8 @@ const authSlice = createSlice({
     logout(state) {
       state.status = AUTH_STATUS.loading;
       state.user = null;
-      error: null;
+      state.error = null;
+      deleteToken();
     },
   },
   extraReducers: (builder) => {
@@ -124,9 +131,10 @@ const authSlice = createSlice({
         localStorage.removeItem('authToken');
       });
 
-      //
-      
+    //
+
   },
 });
 
+export const { logout } = authSlice.actions;
 export default authSlice.reducer;

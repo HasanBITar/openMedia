@@ -11,7 +11,16 @@ export const API = {
     getFile: 'file/',
     thumbnail: BACKEND_API + 'thumbnails/',
     steamVideo: BACKEND_API + 'file/videos/',
+    
+    getGroups: 'group/',
+    addGroup: 'group/',
+    deleteGroup: 'group/',
+    
+    getUsersOfGroup: 'group/', ///group/:groupId
+    addUserToGroup: 'group/', //group/:groupId post user
+    deleteUserFromGroup: 'group/', //groupId/userId
 }
+
 
 export const fileTypes = {
     image: 'image',

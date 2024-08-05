@@ -20,40 +20,40 @@ const LandingPage = () => {
                                 <path d="M19.3222 32.1523C19.3245 32.1518 19.3241 32.1498 19.3218 32.1503C18.8753 32.2417 18.3673 32.3264 17.8083 32.3888C14.8881 32.7145 11.9676 31.781 9.77876 29.8225C7.58999 27.8641 6.3436 25.0662 6.3436 22.1307L6.34359 21.3389L0.845581 21.6769C3.39893 29.2156 11.369 33.8285 19.2912 32.1588C19.295 32.158 19.3083 32.1553 19.3222 32.1523Z" fill="url(#paint8_linear_2484_3243)" />
                                 <defs>
                                     <linearGradient id="paint0_linear_2484_3243" x1="20.0599" y1="24.2701" x2="23.2075" y2="13.307" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1724C9" />
-                                        <stop offset="1" stop-color="#1C64F2" />
+                                        <stop stopColor="#1724C9" />
+                                        <stop offset="1" stopColor="#1C64F2" />
                                     </linearGradient>
                                     <linearGradient id="paint1_linear_2484_3243" x1="27.3093" y1="10.9001" x2="19.0297" y2="2.64962" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1C64F2" />
-                                        <stop offset="1" stop-color="#0092FF" />
+                                        <stop stopColor="#1C64F2" />
+                                        <stop offset="1" stopColor="#0092FF" />
                                     </linearGradient>
                                     <linearGradient id="paint2_linear_2484_3243" x1="16.1645" y1="5.52115" x2="3.67432" y2="6.3104" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#0092FF" />
-                                        <stop offset="1" stop-color="#45B2FF" />
+                                        <stop stopColor="#0092FF" />
+                                        <stop offset="1" stopColor="#45B2FF" />
                                     </linearGradient>
                                     <linearGradient id="paint3_linear_2484_3243" x1="15.3198" y1="29.1626" x2="26.5366" y2="26.1359" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1C64F2" />
-                                        <stop offset="1" stop-color="#0092FF" />
+                                        <stop stopColor="#1C64F2" />
+                                        <stop offset="1" stopColor="#0092FF" />
                                     </linearGradient>
                                     <linearGradient id="paint4_linear_2484_3243" x1="7.26881" y1="16.1827" x2="15.2325" y2="24.4347" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1724C9" />
-                                        <stop offset="1" stop-color="#1C64F2" />
+                                        <stop stopColor="#1724C9" />
+                                        <stop offset="1" stopColor="#1C64F2" />
                                     </linearGradient>
                                     <linearGradient id="paint5_linear_2484_3243" x1="25.4505" y1="22.1356" x2="31.007" y2="10.9345" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#0092FF" />
-                                        <stop offset="1" stop-color="#45B2FF" />
+                                        <stop stopColor="#0092FF" />
+                                        <stop offset="1" stopColor="#45B2FF" />
                                     </linearGradient>
                                     <linearGradient id="paint6_linear_2484_3243" x1="5.36387" y1="9.63067" x2="2.39054" y2="20.8063" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1C64F2" />
-                                        <stop offset="1" stop-color="#0092FF" />
+                                        <stop stopColor="#1C64F2" />
+                                        <stop offset="1" stopColor="#0092FF" />
                                     </linearGradient>
                                     <linearGradient id="paint7_linear_2484_3243" x1="20.5431" y1="9.09912" x2="9.67768" y2="11.8044" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#1724C9" />
-                                        <stop offset="1" stop-color="#1C64F2" />
+                                        <stop stopColor="#1724C9" />
+                                        <stop offset="1" stopColor="#1C64F2" />
                                     </linearGradient>
                                     <linearGradient id="paint8_linear_2484_3243" x1="6.40679" y1="21.8566" x2="13.3326" y2="32.2745" gradientUnits="userSpaceOnUse">
-                                        <stop stop-color="#0092FF" />
-                                        <stop offset="1" stop-color="#45B2FF" />
+                                        <stop stopColor="#0092FF" />
+                                        <stop offset="1" stopColor="#45B2FF" />
                                     </linearGradient>
                                 </defs>
                             </svg>
@@ -61,15 +61,11 @@ const LandingPage = () => {
                             OpenMedia
                         </a>
 
-
-
-
-
                         <a href="/signin" className="hidden rounded-lg bg-blue-700 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-blue-300 transition duration-100 hover:bg-blue-600 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block">Login</a>
 
                         <button type="button" className="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-blue-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden">
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd" />
+                                <path fillRule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
                             </svg>
 
                             Menu
@@ -96,7 +92,7 @@ const LandingPage = () => {
 
 
                         <div className="h-48 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12">
-                            <img src="https://images.unsplash.com/photo-1618004912476-29818d81ae2e?auto=format&q=75&fit=crop&w=1000" loading="lazy" alt="Photo by Fakurian Design" className="h-full w-full object-cover object-center" />
+                            <img src="/images/hero.jpg" loading="lazy" alt="Photo by Fakurian Design" className=" bg-black h-full w-full object-cover object-center" />
                         </div>
 
                     </section>
@@ -121,7 +117,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
                                 </svg>
                             </div>
 
@@ -135,7 +131,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                 </svg>
                             </div>
 
@@ -149,7 +145,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
                                 </svg>
                             </div>
 
@@ -163,7 +159,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
                                 </svg>
                             </div>
 
@@ -177,7 +173,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
                                 </svg>
                             </div>
 
@@ -191,7 +187,7 @@ const LandingPage = () => {
                         <div className="flex flex-col items-center">
                             <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-700 text-white shadow-lg md:h-14 md:w-14 md:rounded-xl">
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                                 </svg>
                             </div>
 

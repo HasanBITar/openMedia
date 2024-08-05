@@ -1,24 +1,18 @@
 
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import FileInput from "../components/inputs/FileInput"
-import { closeUploadModal } from '../store/UISlice'
-import { API } from "../config";
 
-
-const Modal = ({ className, children }) => {
-    const isUploadModalOpen = useSelector((state) => state.UI.isUploadModalOpen);
-    const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ className, children, uiState, closeAction }) => {
+    const [isOpen, setIsOpen] = useState(uiState);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setIsOpen(isUploadModalOpen);
-    }, [isUploadModalOpen])
+        setIsOpen(uiState);
+    }, [uiState])
 
     const closeModal = () => {
-        dispatch(closeUploadModal())
+        dispatch(closeAction())
     }
-
 
     // TODO multiple files upload
     return (

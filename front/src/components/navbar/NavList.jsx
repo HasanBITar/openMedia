@@ -14,7 +14,7 @@ const NavList = ({ children }) => {
     const navItems = [
         { label: 'Home', path: '/home' },
         { label: 'Videos', path: '/videos' },
-        { label: 'Photos', path: '/photos' },
+        { label: 'Photos', path: '/images' },
         { label: 'Music', path: '/music' },
         { label: 'Documents', path: '/documents' },
     ];
