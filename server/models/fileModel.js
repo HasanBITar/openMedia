@@ -48,15 +48,27 @@ const fileExistsCheck = async (fileId, type) => {
 }
 
 const typeJoins = {
-    video : ', t.length'
+    video: ', t.length'
+}
+
+function getUniqueObjects(arr) {
+    // return arr
+    const uniqueObjects = arr.reduce((acc, obj) => {
+        if (!acc.has(obj.fileId)) {
+            acc.set(obj.fileId, obj);
+        }
+        return acc;
+    }, new Map());
+
+    return Array.from(uniqueObjects.values());
 }
 
 const getFilesByUser = async (userId, type, page = 1) => {
     try {
         const offset = (page - 1) * config.itemsPerPage;
         const typeFilter = type !== null ? `AND f.type = '${type}'` : ''
-        const typeJoin1 = type !== null? ', t.*' : ''
-        const typeJoin2 = type !== null? `left join ${type} t on t.file_id = f.file_id` : ''
+        const typeJoin1 = type !== null ? ', t.*' : ''
+        const typeJoin2 = type !== null ? `left join ${type} t on t.file_id = f.file_id` : ''
 
         const countSql = `
             select COUNT(DISTINCT f.file_id)
@@ -139,7 +151,7 @@ const getFilesByUser = async (userId, type, page = 1) => {
         const ret = {
             page,
             total: totalItems,
-            data: result.rows.map(e => rename(e))
+            data: getUniqueObjects(result.rows.map(e => rename(e)))
         }
         return [true, ret];
     }
