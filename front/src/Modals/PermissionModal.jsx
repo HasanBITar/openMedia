@@ -86,7 +86,7 @@ const PermissionModal = () => {
 
     const handleAddPermissisons = async () => {
         await addPerms({fileTag: fileTagList, userGroup:userGroupList});
-        // window.location.reload();
+        window.location.reload();
         dispatch(closePermission);
     }
 

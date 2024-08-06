@@ -1,33 +1,24 @@
 import { useDispatch } from "react-redux";
-import { openAddGroupModal } from "../../store/UISlice";
-import AddGroupModal from "../../Modals/AddGroupModal";
-import { useGetGroupsQuery, useDeleteGroupMutation } from "../../api/groupsAPI";
 import { useEffect, useState } from "react";
 import { formatDate } from "../../utils/helpers";
 import { Link } from 'react-router-dom';
-import ValidatedInput from "../inputs/ValidatedInput";
-import { validateText } from "../../utils/validators";
-import { HexColorPicker } from "react-colorful";
-import { useAddTagMutation, useGetTagsQuery, useDeleteTagMutation } from "../../api/TagsAPI";
 import { openPermission } from "../../store/UISlice";
 import PermissionModal from "../../Modals/PermissionModal";
+import { useGetPermissionsQuery, useDeletePermissionMutation } from "../../api/PermissionAPI";
+import { extractFilename } from "../../utils/helpers";
 
 
-const Field = ({ id, color, name, date, action }) => {
+const Field = ({ id, givenTo, accessOn, date, action }) => {
     return (
         <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all ease-in-out">
             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
-                <Link to={id} className="w-full h-full">
-                    <div className="ps-3">
-                        <div className="text-base font-semibold">{name}</div>
-                        {/* <div className="font-normal text-gray-500">neil.sims@flowbite.com</div> */}
-                    </div>
-                </Link>
+                <div className="ps-3">
+                    <div className="text-base font-semibold">{givenTo}</div>
+                    {/* <div className="font-normal text-gray-500">neil.sims@flowbite.com</div> */}
+                </div>
             </th>
             <td className="px-6 py-4">
-                <div className="flex items-center">
-                    <div className="p-2" style={{ backgroundColor: '#' + color, borderRadius: 9999 }} />
-                </div>
+                {accessOn}
             </td>
             <td className="px-6 py-4">
                 {formatDate(date)}
@@ -42,25 +33,17 @@ const Field = ({ id, color, name, date, action }) => {
 const Permissions = () => {
     const dispatch = useDispatch();
 
+    const { data, error, isLoading, refetch } = useGetPermissionsQuery();
+    const [deletePermission] = useDeletePermissionMutation();
+    useEffect(() => {
+        console.log("my permissions", data);
+    }, [data, isLoading])
 
 
-    // const { data, error, isLoading, refetch } = useGetTagsQuery();
-    // const [addTag] = useAddTagMutation();
-
-    // useEffect(() => {
-    //     console.log("tag data", data);
-    // }, [data, isLoading])
-
-    // const handleAddTag = async () => {
-    //     await addTag({ color, name: newTag }).unwrap();
-    //     refetch();
-    //     setNewTag('');
-    // }
-
-    // const handleDeleteTag = async (tagId) => {
-    //     await deleteTag(permissionId).unwrap();
-    //     refetch();
-    // }
+    const handleDeletePermission = async (permissionId) => {
+        await deletePermission(permissionId).unwrap();
+        refetch();
+    }
 
 
 
@@ -81,12 +64,12 @@ const Permissions = () => {
             <>
                 {data.map((item) => (
                     <Field
-                        key={item.tagId}
-                        id={item.tagId}
-                        usergroup={item.color}
-                        filetag={item.name}
+                        key={item.permissionId}
+                        id={item.permissionId}
+                        givenTo={item.groupName !== null ? item.groupName + ' (Group)' : item.username}
+                        accessOn={item.tagName !== null ? item.tagName + ' (Tag)' : extractFilename(item.location)}
                         date={item.createDate}
-                        action={handleDeleteTag} // Changed line
+                        action={handleDeletePermission} // Changed line
                     />
                 ))}
             </>
@@ -131,7 +114,7 @@ const Permissions = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {renderContent(handleDeleteTag)} */}
+                        {renderContent()}
                     </tbody>
                 </table>
             </div>

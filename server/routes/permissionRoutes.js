@@ -9,11 +9,15 @@ const router = express.Router();
 //   getMyFiles: 'permission/myfiles',
 // permission/mypermissions
 // addPermissions : 'permission/add
+// deletePermission : 'permission/delete',
+
 
 router.get('/users', verifyToken, permissionController.getAllUsers);
 router.get('/myfiles', verifyToken, permissionController.getMyFiles);
 router.get('/mypermissions', verifyToken, permissionController.getMyPermissions);
-router.post('/add', verifyToken, permissionController.addPermissions)
+router.post('/add', verifyToken, permissionController.addPermissions);
+router.delete('/delete/:permissionId', verifyToken, permissionController.deletePermission);
+
 
 
 module.exports = router;

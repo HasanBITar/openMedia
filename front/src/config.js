@@ -33,6 +33,7 @@ export const API = {
   getMyFiles: 'permission/myfiles',
   getPermissions : 'permission/mypermissions',
   addPermissions : 'permission/add',
+  deletePermission : 'permission/delete/',
 
 };
 

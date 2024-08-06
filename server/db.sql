@@ -134,8 +134,36 @@ CREATE TABLE permission (
 );
 
 
-ALTER TABLE permission
-ADD CONSTRAINT unique_user_group_tag_file
-UNIQUE (user_id, group_id, tag_id, file_id);
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_1 ON permission(user_id, group_id, tag_id, file_id)
+WHERE user_id IS NOT NULL AND group_id IS NOT NULL AND tag_id IS NOT NULL AND file_id IS NOT NULL;
 
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_2 ON permission(user_id, group_id, tag_id)
+WHERE user_id IS NOT NULL AND group_id IS NOT NULL AND tag_id IS NOT NULL AND file_id IS NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_3 ON permission(user_id, group_id, file_id)
+WHERE user_id IS NOT NULL AND group_id IS NOT NULL AND tag_id IS NULL AND file_id IS NOT NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_4 ON permission(user_id, tag_id, file_id)
+WHERE user_id IS NOT NULL AND group_id IS NULL AND tag_id IS NOT NULL AND file_id IS NOT NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_5 ON permission(group_id, tag_id, file_id)
+WHERE user_id IS NULL AND group_id IS NOT NULL AND tag_id IS NOT NULL AND file_id IS NOT NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_6 ON permission(user_id, group_id)
+WHERE user_id IS NOT NULL AND group_id IS NOT NULL AND tag_id IS NULL AND file_id IS NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_7 ON permission(user_id, tag_id)
+WHERE user_id IS NOT NULL AND group_id IS NULL AND tag_id IS NOT NULL AND file_id IS NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_8 ON permission(user_id, file_id)
+WHERE user_id IS NOT NULL AND group_id IS NULL AND tag_id IS NULL AND file_id IS NOT NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_9 ON permission(group_id, tag_id)
+WHERE user_id IS NULL AND group_id IS NOT NULL AND tag_id IS NOT NULL AND file_id IS NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_10 ON permission(group_id, file_id)
+WHERE user_id IS NULL AND group_id IS NOT NULL AND tag_id IS NULL AND file_id IS NOT NULL;
+
+CREATE UNIQUE INDEX unique_user_group_tag_file_partial_11 ON permission(tag_id, file_id)
+WHERE user_id IS NULL AND group_id IS NULL AND tag_id IS NOT NULL AND file_id IS NOT NULL;
 

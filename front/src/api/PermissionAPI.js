@@ -37,12 +37,12 @@ export const permissionAPI = createApi({
             }),
         }),
 
-        // deleteTag: builder.mutation({
-        //     query: (tagId) => ({
-        //         url: `${API.deleteTag}${tagId}`,
-        //         method: 'DELETE',
-        //     }),
-        // }),
+        deletePermission: builder.mutation({
+            query: (permissionId) => ({
+                url: `${API.deletePermission}${permissionId}`,
+                method: 'DELETE',
+            }),
+        }),
     })
 })
 
@@ -52,5 +52,6 @@ export const {
     useGetUsersQuery, 
     useGetPermissionsQuery,   
     useAddPermissionsMutation,
+    useDeletePermissionMutation,
 
 } = permissionAPI;

@@ -42,17 +42,13 @@ const addPermissions = async (req, res) => {
 
 
 
-const getAllTags = async (req, res) => {
-    try {
-        const [ok, tags] = await tagModel.getAllTags(req.userId);
-        if (!ok) return errorRespone(tags, res);
-        console.log(tags);
-        res.status(200).json(tags);
-    } catch (err) {
-        errorRespone(err, res);
-    }
-};
-
+const deletePermission = async (req, res) => {
+    const { permissionId } = req.params;
+    const [ok, result] = await permissionModel.deletePermission(permissionId);
+    
+    res.status(200).json(result);
+    
+}
 
 const deleteTag = async (req, res) => {
     try {
@@ -82,5 +78,6 @@ module.exports = {
     getAllUsers,
     getMyFiles,
     getMyPermissions,
-    addPermissions
+    addPermissions,
+    deletePermission
 };
