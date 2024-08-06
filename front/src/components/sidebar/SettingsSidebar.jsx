@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaUserGroup, FaTags } from "react-icons/fa6";
+import { MdSecurity } from "react-icons/md";
 
 const SettingsSidebar = () => {
     const location = useLocation();
@@ -40,11 +41,10 @@ const SettingsSidebar = () => {
                         <FaUserGroup className="w-6 h-6 me-2" />
                         Groups
                     </Field>
-                    <Field url={'/permission'}>
-                        <FaUserGroup className="w-6 h-6 me-2" />
-                        Groups
+                    <Field url={'/permissions'}>
+                        <MdSecurity className="w-6 h-6 me-2" />
+                        Permissions
                     </Field>
-
                 </ul>
             </div>
         </div>

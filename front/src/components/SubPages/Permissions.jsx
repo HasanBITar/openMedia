@@ -36,49 +36,42 @@ const Field = ({ id, color, name, date, action }) => {
     )
 }
 
-const TagsSubPage = () => {
+const Permissions = () => {
     const dispatch = useDispatch();
 
-    const [isValid, setIsValid] = useState(null);
-    const [newTag, setNewTag] = useState('');
-    const [color, setColor] = useState("#b32aa9");
-    const [colorHidden, setColorHidden] = useState(true);
-    const colorStyle = {
-        position: 'absolute',
-        top: '-5rem',
-        left: '-13rem',
-    }
+    
+    
+    // const { data, error, isLoading, refetch } = useGetTagsQuery();
+    // const [addTag] = useAddTagMutation();
+    
+    // useEffect(() => {
+    //     console.log("tag data", data);
+    // }, [data, isLoading])
 
-    const { data, error, isLoading, refetch } = useGetTagsQuery();
-    const [addTag] = useAddTagMutation();
-    const [deleteTag] = useDeleteTagMutation();
-
-    useEffect(() => {
-        console.log("tag data", data);
-    }, [data, isLoading])
-
-    const handleAddTag = async () => {
-        await addTag({ color, name: newTag }).unwrap();
-        refetch();
-        setNewTag('');
-    }
+    // const handleAddTag = async () => {
+    //     await addTag({ color, name: newTag }).unwrap();
+    //     refetch();
+    //     setNewTag('');
+    // }
 
     const handleDeleteTag = async (tagId) => {
-        await deleteTag(tagId).unwrap();
+        await deleteTag(permissionId).unwrap();
         refetch();
     }
+
+
 
     const renderContent = () => {
         if (isLoading) {
-            return <tr><td colSpan={4}>Loading...</td></tr>;
+            return <tr><td className="text-center p-3"colSpan={4}>Loading...</td></tr>;
         }
 
         if (error) {
-            return <tr><td colSpan={4}>Error: {error.message}</td></tr>;
+            return <tr><td className="text-center p-3"colSpan={4}>Error: {error.message}</td></tr>;
         }
 
         if (!data || data.length === 0) {
-            return <tr><td colSpan={4} className="text-center">No Tags found.</td></tr>;
+            return <tr><td className="text-center p-3"colSpan={4} >No Permissions found.</td></tr>;
         }
 
         return (
@@ -87,8 +80,8 @@ const TagsSubPage = () => {
                     <Field
                         key={item.tagId}
                         id={item.tagId}
-                        color={item.color}
-                        name={item.name}
+                        usergroup={item.color}
+                        filetag={item.name}
                         date={item.createDate}
                         action={handleDeleteTag} // Changed line
                     />
@@ -101,22 +94,13 @@ const TagsSubPage = () => {
             <div className="p-5 lg:p-8 relative overflow-x-auto shadow-md sm:rounded-lg transition-all ease-in-out">
                 <div className="flex justify-start mb-3">
                     <div className="bg-gray-800">
-                        <h1 className="flex font-bold text-md md:text-xl text-white text-center">Your Tags</h1>
+                        <h1 className="flex font-bold text-md md:text-xl text-white text-center">Your Permissions</h1>
                     </div>
                 </div>
                 <br></br>
                 <div className="flex items-center justify-between overflow-visible ">
-                    <ValidatedInput label='Tage Name' type='text' validator={validateText} value={newTag} setValue={setNewTag} isValid={isValid} setIsValid={setIsValid} />
-
-                    <button onClick={() => setColorHidden(!colorHidden)}
-                        className={`text-white relative bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
-                                text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-10 flex items-center`}
-                    >
-                        <div className={`p-2 rounded-full inline-block me-2`} style={{ backgroundColor: color }}></div>
-                        Choose Color
-                        <HexColorPicker color={color} onChange={setColor} style={colorHidden ? { display: 'none' } : colorStyle} />
-                    </button>
-                    <button onClick={handleAddTag}
+                    
+                    <button 
                         className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
                             text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-10`}
                     > Create Tag
@@ -126,10 +110,10 @@ const TagsSubPage = () => {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                Tag
+                                Given to
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Color
+                                Access on
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Date
@@ -140,7 +124,7 @@ const TagsSubPage = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {renderContent(handleDeleteTag)}
+                        {/* {renderContent(handleDeleteTag)} */}
                     </tbody>
                 </table>
             </div>
@@ -148,4 +132,4 @@ const TagsSubPage = () => {
     )
 }
 
-export default TagsSubPage;
+export default Permissions;

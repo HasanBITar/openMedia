@@ -122,3 +122,13 @@ CREATE TABLE file_tag (
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (file_id, tag_id)
 );
+
+
+CREATE TABLE permission (
+    permission_id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID REFERENCES "user"(user_id) ON DELETE CASCADE,
+    group_id UUID REFERENCES "group"(group_id) ON DELETE CASCADE,
+    tag_id UUID REFERENCES tag(tag_id) ON DELETE CASCADE,
+    file_id UUID REFERENCES file(file_id) ON DELETE CASCADE,
+    create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

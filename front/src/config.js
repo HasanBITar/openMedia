@@ -26,7 +26,13 @@ export const API = {
 
   getTags: "tag/",
   addTag: "tag",
-  deleteTag: "tag/"
+  deleteTag: "tag/",
+
+
+  getAllUsers: 'permission/users',
+  getMyFiles: 'permission/myfiles',
+  getPermissions : 'permission/mypermissions'
+
 };
 
 export const fileTypes = {

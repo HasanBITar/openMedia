@@ -4,6 +4,8 @@ const initialState = {
   isUploadModalOpen: false,
   isAddGroupModalOpen: false,
   isAddUserToGroupModal: false,
+  isPermissionOpen: false,
+  permissionFileId: null,
 };
 
 const UISlice = createSlice({
@@ -31,19 +33,32 @@ const UISlice = createSlice({
     },
     closeAddUserToGroupModal(state) {
       state.isAddUserToGroupModal = false;
+    },
+
+    openPermission(state, fileId = null) {
+      state.permissionFileId = fileId;
+      state.openPermission = true;
+    },
+
+    closePermission(state) {
+      state.permissionFileId = null;
+      state.openPermission = false;
     }
   },
 });
 
-export const { 
-  openUploadModal, 
+export const {
+  openUploadModal,
   closeUploadModal,
-  
+
   openAddGroupModal,
   closeAddGroupModal,
 
   openAddUserToGroupModal,
   closeAddUserToGroupModal,
+
+  openPermission,
+  closePermission
 
 } = UISlice.actions;
 

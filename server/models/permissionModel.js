@@ -2,6 +2,23 @@ const bcrypt = require('bcryptjs');
 
 const db = require('../db');
 
+
+const getMyPermissions = async (userId) => {
+    const result = await db.query(
+        `
+            select p.*, u.username, g.group_name
+            from 
+                tag t
+            left join "permission" p on p.tag_id = t.tag_id 
+            left join "user" u on u.user_id = p.user_id
+            left join "group" g on g.group_id = p.group_id
+            where t.user_id = $1
+        `,
+        [userId]
+    );
+    return [true, result.rows[0]];
+}
+
 const addUser = async ({ username, email, password, profilePhoto = null, isAdmin = false }) => {
     console.log('adduser', profilePhoto)
     try {
@@ -65,8 +82,5 @@ const getAllUsers = async (exception = null) => {
 }
 
 module.exports = {
-    addUser,
-    getUserById,
-    getUserByEmail,
-    getAllUsers,
+
 }

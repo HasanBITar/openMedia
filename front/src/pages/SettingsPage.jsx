@@ -8,6 +8,7 @@ import SettingsSidebar from "../components/sidebar/SettingsSidebar";
 import GroupSubPage from "../components/SubPages/GroupSubPage";
 import GroupInfoSubPage from "../components/SubPages/GroupInfoSubPage";
 import TagsSubPage from "../components/SubPages/TagsSubPage";
+import Permissions from "../components/SubPages/Permissions";
 // import { Route } from "react-router-dom";
 
 const SettingsPage = () => {
@@ -27,7 +28,10 @@ const SettingsPage = () => {
             ) : isGroup ? (
                 currentPage === '/groups' && <GroupSubPage />
             ) :
-                <TagsSubPage    />
+               location.pathname === '/tags'?
+                <TagsSubPage />
+                :
+                <Permissions />
             }
         </SidebarLayout>
     );

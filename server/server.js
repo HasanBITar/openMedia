@@ -9,6 +9,7 @@ const authRoutes = require('./routes/authRoutes.js');
 const fileRoutes = require('./routes/fileRoutes.js');
 const groupRoutes = require('./routes/groupRoutes.js');
 const tagRoutes = require('./routes/tagRoutes.js');
+const permissionRoutes = require('./routes/permissionRoutes.js')
 
 const authenticateToken = require('./middleware/authenticateToken.js');
 
@@ -23,6 +24,7 @@ app.use('/api/v1/auth', authRoutes);
 app.use('/api/v1/file', fileRoutes);
 app.use('/api/v1/group', groupRoutes);
 app.use('/api/v1/tag', tagRoutes);
+app.use('/api/v1/permission', permissionRoutes);
 
 app.use('/api/v1/thumbnails', express.static(path.join(__dirname, 'uploads/thumbnails')));
 app.use('/api/v1/images', express.static(path.join(__dirname, 'uploads/')));

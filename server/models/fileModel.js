@@ -89,6 +89,25 @@ const getFilesByUser = async (userId, type, page = 1) => {
 }
 
 
+const getMyFiles = async (userId) => {
+    try {
+        const sql = `
+            SELECT 
+                f.*
+            FROM file f
+            WHERE f.user_id = $1
+        `;
+        const result = await db.query(sql, [userId]);
+        const ret = result.rows.map(e => rename(e))
+        return [true, ret];
+    }
+    catch (err) {
+        console.error('Error:', err);
+        return [false, err];
+    }
+}
+
+
 const addFile = async (userId, location, type, size, thumbnail, metadata) => {
     try {
 
@@ -204,6 +223,7 @@ module.exports = {
     getFilesByUser,
     typeCheck,
     getFile,
+    getMyFiles
 }
 
 
