@@ -50,14 +50,38 @@ const fileExistsCheck = async (fileId, type) => {
 const getFilesByUser = async (userId, type, page = 1) => {
     try {
         const offset = (page - 1) * config.itemsPerPage;
-
+        const typeFilter = type !== null? `AND f.type = '${type}'` : ''
         const countSql = `
-            SELECT 
-                COUNT(*) AS total
-            FROM ${type} as t
-            LEFT JOIN file f ON f.file_id = t.file_id
-            LEFT JOIN "user" u ON u.user_id = f.user_id
-            WHERE u.user_id = $1
+            select f.*
+            from "user" u
+            left join "user_group" ug on ug.user_id = u.user_id
+                
+            left join "permission" p1 on p1.user_id = u.user_id
+            left join "permission" p2 on p2.group_id = ug.group_id
+
+            left join "file" f1 on f1.file_id = p1.file_id
+            left join "file" f2 on f2.file_id = p2.file_id
+                
+            left join "file_tag" t1 on t1.tag_id = p1.tag_id
+            left join "file_tag" t2 on t2.tag_id = p2.tag_id
+
+                
+            left join "file" f3 on f3.file_id = t1.file_id
+            left join "file" f4 on f4.file_id = t2.file_id
+
+            left join "file" f5 on f5.user_id = u.user_id
+
+            left join "file" f on (
+                f.file_id = f1.file_id
+                or f.file_id = f2.file_id
+                or f.file_id = f3.file_id
+                or f.file_id = f4.file_id
+                or f.file_id = f5.file_id
+            )
+                
+            where u.user_id = uuid('d49ea858-6066-47b8-acd5-21ec6234b4cd')
+            ${typeFilter}
+            GROUP BY f.file_id
         `;
         const countResult = await db.query(countSql, [userId]);
         console.log('row count', countResult.rowCount);
