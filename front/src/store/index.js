@@ -3,6 +3,7 @@ import authReducer from './authSlice';
 import UISlice from './UISlice';
 import { filesAPI } from '../api/filesAPI';
 import { groupsAPI } from '../api/groupsAPI';
+import { tagsAPI } from '../api/TagsAPI';
 
 const store = configureStore({
   reducer: {
@@ -10,9 +11,10 @@ const store = configureStore({
     UI: UISlice,
     [filesAPI.reducerPath]: filesAPI.reducer,
     [groupsAPI.reducerPath]: groupsAPI.reducer, 
+    [tagsAPI.reducerPath]: tagsAPI.reducer, 
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(filesAPI.middleware, groupsAPI.middleware),
+    getDefaultMiddleware().concat(filesAPI.middleware, groupsAPI.middleware, tagsAPI.middleware),
 });
 
 export default store;

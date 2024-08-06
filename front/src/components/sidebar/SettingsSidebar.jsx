@@ -40,7 +40,10 @@ const SettingsSidebar = () => {
                         <FaUserGroup className="w-6 h-6 me-2" />
                         Groups
                     </Field>
-
+                    <Field url={'/permission'}>
+                        <FaUserGroup className="w-6 h-6 me-2" />
+                        Groups
+                    </Field>
 
                 </ul>
             </div>

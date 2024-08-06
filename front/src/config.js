@@ -18,10 +18,15 @@ export const API = {
   getGroups: "group/",
   addGroup: "group/",
   deleteGroup: "group/",
-  getTags: "tag/",
+  
   getGroupInfo: "group/", ///group/:groupId
   addUserToGroup: "group/", //group/:groupId post user
   deleteUserFromGroup: "group/", //groupId/userId
+  getNonMembers: 'group/non-members/',
+
+  getTags: "tag/",
+  addTag: "tag",
+  deleteTag: "tag/"
 };
 
 export const fileTypes = {
