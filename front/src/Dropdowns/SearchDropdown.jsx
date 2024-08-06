@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import Multiselect from 'multiselect-react-dropdown';
 
-const SearchDropdown = ({ data, setValue, hideChips }) => {
-  const [options, setOptions] = useState([]);
+const SearchDropdown = ({ data, setValue, hideChips, fieldName }) => {
+  const [options, setOptions] = useState(data || []);
 
   const [selectedValues, setSelectedValues] = useState([]);
 
@@ -33,12 +33,12 @@ const SearchDropdown = ({ data, setValue, hideChips }) => {
     <div>
       <Multiselect
         options={options}
-        displayValue="name"
+        displayValue={fieldName}
         onSelect={handleSelect}
         onRemove={handleRemove}
         customOption={displayOption}
         showCheckbox={true}
-        placeholder='Type user name'
+        placeholder='Type to search'
         className='w-full bg-gray-input focus:outline-none focus:border-none border-none ring-0 outline-none rounded-lg'
         id='myRandomSearch'
         style={hideChips? style : {}}

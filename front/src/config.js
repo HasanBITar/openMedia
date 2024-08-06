@@ -1,4 +1,7 @@
-export const BACKEND_API = "http://localhost:5000/api/v1/";
+export const BACKEND_API = `http://${import.meta.env.VITE_BACK_IP}:5000/api/v1/`;
+// export const BACKEND_API = "192.168.192.111:5000/api/v1/";
+
+console.log('BACKAPI', BACKEND_API);
 
 export const API = {
   signin: "auth/signin",
@@ -15,10 +18,22 @@ export const API = {
   getGroups: "group/",
   addGroup: "group/",
   deleteGroup: "group/",
-  getTags: "tag/",
+  
   getGroupInfo: "group/", ///group/:groupId
   addUserToGroup: "group/", //group/:groupId post user
   deleteUserFromGroup: "group/", //groupId/userId
+  getNonMembers: 'group/non-members/',
+
+  getTags: "tag/",
+  addTag: "tag",
+  deleteTag: "tag/",
+
+
+  getAllUsers: 'permission/users',
+  getMyFiles: 'permission/myfiles',
+  getPermissions : 'permission/mypermissions',
+  addPermissions : 'permission/add',
+
 };
 
 export const fileTypes = {

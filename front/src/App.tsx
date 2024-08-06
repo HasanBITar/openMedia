@@ -44,6 +44,7 @@ function App() {
             <Route path="groups" element={<SettingsPage />} />
             <Route path="groups/:groupId" element={<SettingsPage />} />
             <Route path="tags" element={<SettingsPage />} />
+            <Route path="permissions" element={<SettingsPage />} />
           </Route>
         </Route>
         <Route path="/signin" element={<SigninPage />} />

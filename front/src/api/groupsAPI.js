@@ -12,7 +12,7 @@ export const groupsAPI = createApi({
         method: 'GET',
       }),
     }),
-    
+
     addGroup: builder.mutation({
       query: (newGroup) => ({
         url: `${API.addGroup}`,
@@ -20,7 +20,7 @@ export const groupsAPI = createApi({
         body: newGroup,
       }),
     }),
-    
+
     deleteGroup: builder.mutation({
       query: (groupId) => ({
         url: `${API.deleteGroup}${groupId}`,
@@ -44,14 +44,14 @@ export const groupsAPI = createApi({
     }),
     deleteUserFromGroup: builder.mutation({
       query: ({ groupId, userId }) => ({
-        url: `${API.deleteUserFromGroup}${groupId}${userId}`,
+        url: `${API.deleteUserFromGroup}${groupId}/${userId}`,
         method: 'DELETE',
       }),
     }),
 
     /// users 
     getNonMembers: builder.query({
-      query: ({groupId}) => ({
+      query: ({ groupId }) => ({
         url: `${API.getNonMembers}${groupId}`,
         method: 'GET',
       }),
@@ -63,11 +63,11 @@ export const {
   useGetGroupsQuery,
   useAddGroupMutation,
   useDeleteGroupMutation,
-  
+
   useGetGroupInfoQuery,
   useDeleteUserFromGroupMutation,
   useAddUsersToGroupMutation,
 
   useGetNonMembersQuery,
-  
+
 } = groupsAPI;

@@ -1,13 +1,15 @@
 
 
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import SidebarLayout from "../layouts/SidebarLayout";
 import SettingsSidebar from "../components/sidebar/SettingsSidebar";
 import GroupSubPage from "../components/SubPages/GroupSubPage";
 import GroupInfoSubPage from "../components/SubPages/GroupInfoSubPage";
-
+import TagsSubPage from "../components/SubPages/TagsSubPage";
+import Permissions from "../components/SubPages/Permissions";
+// import { Route } from "react-router-dom";
 
 const SettingsPage = () => {
     const { groupId } = useParams();
@@ -17,13 +19,20 @@ const SettingsPage = () => {
         setCurrentPage(location.pathname);
     }, [location]);
 
+    const isGroup = location.pathname.startsWith('/groups')
     return (
         <SidebarLayout sidebar={SettingsSidebar}>
-            {groupId ? (
+            
+            {isGroup && groupId ? (
                 <GroupInfoSubPage groupId={groupId} />
-            ) : (
+            ) : isGroup ? (
                 currentPage === '/groups' && <GroupSubPage />
-            )}
+            ) :
+               location.pathname === '/tags'?
+                <TagsSubPage />
+                :
+                <Permissions />
+            }
         </SidebarLayout>
     );
 }

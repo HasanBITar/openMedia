@@ -181,6 +181,7 @@ body {
 .search-wrapper.searchWrapper input {
   width: 100%;
   padding: .3rem;
+  @apply !text-white
 }
 
 .multiSelectContainer ul {
@@ -189,6 +190,7 @@ body {
 }
 
 .multiSelectContainer li {
+  color: white;
   width: 100%;
   padding: .3rem;
   @apply transition-all ease-in-out bg-gray-menu
@@ -199,8 +201,14 @@ body {
 }
 .optionListContainer {
   @apply !rounded-lg;
+  @apply !text-white;
 }
 
 .multiSelectContainer .chip {
-  
+  @apply !px-4 !py-2 bg-gray-600 !rounded-full transition-all ease-in-out
+}
+
+
+.multiSelectContainer .chip:hover {
+  @apply bg-gray-500
 }

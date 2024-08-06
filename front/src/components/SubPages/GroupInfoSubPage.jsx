@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { openAddUserToGroupModal } from "../../store/UISlice";
 import AddUserToGroupModal from "../../Modals/AddUserToGroupModal";
-import { useGetGroupInfoQuery, useGetGroupsQuery } from "../../api/groupsAPI";
+import { useGetGroupInfoQuery, useDeleteUserFromGroupMutation } from "../../api/groupsAPI";
 import { useEffect } from "react";
 import { formatDate } from "../../utils/helpers";
 import { Link } from 'react-router-dom'
 
-const Field = ({ id, name, email, date, action }) => {
+const Field = ({ id, name, email, action }) => {
     return (
         <tr key={id} className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600 transition-all ease-in-out">
             <th scope="row" className="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
@@ -19,7 +19,7 @@ const Field = ({ id, name, email, date, action }) => {
             </th>
             <td className="px-6 py-4">
                 <div className="flex items-center">
-                    {formatDate(date)}
+                    {email}
                 </div>
             </td>
             <td className="px-6 py-4">
@@ -37,7 +37,7 @@ const GroupInfoSubPage = ({ groupId }) => {
         dispatch(openAddUserToGroupModal())
     }
 
-    const { data, error, isLoading } = useGetGroupInfoQuery(groupId);
+    const { data, error, isLoading, refetch } = useGetGroupInfoQuery(groupId);
 
     useEffect(() => {
         console.log("group data", data);
@@ -53,23 +53,29 @@ const GroupInfoSubPage = ({ groupId }) => {
         }
 
         if (!data || data.length === 0) {
-            return <tr><td colSpan={4} className="text-center">No users found.</td></tr>;
+            return <tr><td colSpan={4} className="text-center py-3">No users found.</td></tr>;
         }
 
         return (
             <>
                 {data.map((item) => (
                     <Field
-                        key={item.groupId}
-                        id={item.groupId}
-                        name={item.groupName}
-                        date={item.createDate}
-                        action={(id) => console.log(`Delete group with id ${id}`)} // Replace with actual delete action
+                        key={item.userId}
+                        id={item.userId}
+                        name={item.username}
+                        email={item.email}
+                        action={handleDeleteUser} // Replace with actual delete action
                     />
                 ))}
             </>
         );
     };
+    
+    const [deleteUser] = useDeleteUserFromGroupMutation();
+    const handleDeleteUser = async (userId) => {
+        await deleteUser({groupId, userId}).unwrap();
+        refetch()
+    }
 
     return (
         <>
@@ -89,10 +95,10 @@ const GroupInfoSubPage = ({ groupId }) => {
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>
                             <th scope="col" className="px-6 py-3">
-                                Group
+                                User name
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Date
+                                User Email
                             </th>
                             <th scope="col" className="px-6 py-3">
                                 Action

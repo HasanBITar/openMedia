@@ -7,15 +7,15 @@ import Modal from "./Modal";
 import SearchDropdown from "../Dropdowns/SearchDropdown";
 
 const AddUserToGroupModal = ({ groupId }) => {
-    const { data: allUsers, error: error1, isLoading: isLoading1 } = useGetNonMembersQuery({ groupId });
+    const { data: nonMembers, error: error1, isLoading: isLoading1 } = useGetNonMembersQuery({ groupId });
     const isOpen = useSelector((state) => state.UI.isAddUserToGroupModal);
     const dispatch = useDispatch();
     const [users, setUsers] = useState([]);
     const [addUsers, { isLoading }] = useAddUsersToGroupMutation();
 
     useEffect(() => {
-        console.log("group allUsers", allUsers);
-    }, [allUsers, isLoading1]);
+        console.log("group nonMembers", nonMembers, 'isloading', isLoading1);
+    }, [nonMembers, isLoading1]);
 
     useEffect(() => {
         console.log(users);
@@ -24,7 +24,8 @@ const AddUserToGroupModal = ({ groupId }) => {
     const handleAddUsers = async (e) => {
         e.preventDefault();
         try {
-            await addUsers({ groupId, users: users.map(user => user.id) });
+            console.log({ groupId, users: users.map(user => user.userId) })
+            await addUsers({ groupId, userIds: users.map(user => user.userId) });
             window.location.reload();
             dispatch(closeAddUserToGroupModal());
         } catch (error) {
@@ -39,7 +40,10 @@ const AddUserToGroupModal = ({ groupId }) => {
                 <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">Add Users</h3>
                 <br />
                 <form onSubmit={handleAddUsers}>
-                    <SearchDropdown data={allUsers || []} setValue={setUsers} hideChips={true} />
+                    {
+                        isLoading1 ? <></> :
+                            <SearchDropdown data={nonMembers || []} setValue={setUsers} hideChips={true} fieldName="username" />
+                    }
                     <div className="flex items-center justify-end mt-6 space-x-4 rtl:space-x-reverse">
                         <button
                             type="submit"
