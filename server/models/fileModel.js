@@ -47,12 +47,61 @@ const fileExistsCheck = async (fileId, type) => {
     }
 }
 
+const typeJoins = {
+    video : ', t.length'
+}
+
 const getFilesByUser = async (userId, type, page = 1) => {
     try {
         const offset = (page - 1) * config.itemsPerPage;
-        const typeFilter = type !== null? `AND f.type = '${type}'` : ''
+        const typeFilter = type !== null ? `AND f.type = '${type}'` : ''
+        const typeJoin1 = type !== null? ', t.*' : ''
+        const typeJoin2 = type !== null? `left join ${type} t on t.file_id = f.file_id` : ''
+
         const countSql = `
-            select f.*
+            select COUNT(DISTINCT f.file_id)
+            from "user" u
+            left join "user_group" ug on ug.user_id = u.user_id
+
+            left join "permission" p1 on p1.user_id = u.user_id
+            left join "permission" p2 on p2.group_id = ug.group_id
+
+            left join "file" f1 on f1.file_id = p1.file_id
+            left join "file" f2 on f2.file_id = p2.file_id
+
+            left join "file_tag" t1 on t1.tag_id = p1.tag_id
+            left join "file_tag" t2 on t2.tag_id = p2.tag_id
+
+
+            left join "file" f3 on f3.file_id = t1.file_id
+            left join "file" f4 on f4.file_id = t2.file_id
+
+            left join "file" f5 on f5.user_id = u.user_id
+
+            left join "file" f on (
+                f.file_id = f1.file_id
+                or f.file_id = f2.file_id
+                or f.file_id = f3.file_id
+                or f.file_id = f4.file_id
+                or f.file_id = f5.file_id
+            )
+
+            where u.user_id = $1
+            ${typeFilter}
+
+        `;
+        // console.log('\n\n\n---------------', countSql, '-----------\n\n\n\n')
+
+        const countResult = await db.query(countSql, [userId]);
+        console.log('row count', countResult.rowCount, countResult.rows[0]);
+        const totalItems = parseInt(countResult.rows[0].count, 10);
+
+        // console.log('\n\n\n---------------' + totalItems + 'Q1 success-----------\n\n\n\n')
+
+
+        // TODO fix the query to include shared files
+        const sql = `
+            select DISTINCT ON (f.file_id) f.* ${typeJoin1}
             from "user" u
             left join "user_group" ug on ug.user_id = u.user_id
                 
@@ -78,26 +127,14 @@ const getFilesByUser = async (userId, type, page = 1) => {
                 or f.file_id = f4.file_id
                 or f.file_id = f5.file_id
             )
-                
-            where u.user_id = uuid('d49ea858-6066-47b8-acd5-21ec6234b4cd')
+            ${typeJoin2}
+            where u.user_id = $1
             ${typeFilter}
-            GROUP BY f.file_id
-        `;
-        const countResult = await db.query(countSql, [userId]);
-        console.log('row count', countResult.rowCount);
-        const totalItems = parseInt(countResult.rows[0].total, 10);
-
-        // TODO fix the query to include shared files
-        const sql = `
-            SELECT 
-                f.*, t.*
-            FROM ${type} as t
-            LEFT JOIN file f ON f.file_id = t.file_id
-            LEFT JOIN "user" u ON u.user_id = f.user_id
-            WHERE u.user_id = $1
             LIMIT $2
             OFFSET $3
         `;
+        console.log('\n\n\n---------------', sql, '-----------\n\n\n\n')
+
         const result = await db.query(sql, [userId, config.itemsPerPage, offset]);
         const ret = {
             page,
