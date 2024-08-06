@@ -39,7 +39,7 @@ function App() {
             <Route path="videos/:videoId" element={<VideoPage />} />
             <Route path="images" element={<ImageLib />} />
             <Route path="music" element={<AudioLib />} />
-            <Route path="documents" element={<Documents />} />
+            {/* <Route path="documents" element={<Documents />} /> */}
             <Route path="settings" element={<SettingsPage />} />
             <Route path="groups" element={<SettingsPage />} />
             <Route path="groups/:groupId" element={<SettingsPage />} />

@@ -11,45 +11,44 @@ const data2 = [
   {
     video_id: "svd329esvdsdv1",
     thumbnail: "images/thumb5.jpeg",
-    fileName: "random video",
+    fileName: " Graduation",
     duration: 1000,
     durationWatched: 20,
-    createDate: "12/10/2024",
+    createDate: "2024-08-05T10:57:09.979Z",
   },
   {
     video_id: "svd329esvdsdv2",
     thumbnail: "/images/thumb1.jpeg",
-    fileName: "random video",
+    fileName: " Norway",
     duration: 1000,
     durationWatched: 400,
-    createDate: "12/10/2024",
+    createDate: "2024-08-05T10:57:09.979Z",
   },
   {
     video_id: "svd329esvdsdv3",
     thumbnail: "/images/thumb2.jpeg",
-    fileName: "random video",
+    fileName: " Medow",
     duration: 1000,
     durationWatched: 0,
-    createDate: "12/10/2024",
+    createDate: "2024-08-05T10:57:09.979Z",
   },
   {
     video_id: "svd329esvdsdv4",
     thumbnail: "/images/thumb3.jpeg",
-    fileName: "random video",
+    fileName: " Laptop",
     duration: 1000,
     durationWatched: 400,
-    createDate: "12/10/2024",
+    createDate: "2024-08-05T10:57:09.979Z",
   },
   {
     video_id: "svd329esvdsdv5",
     thumbnail: "/images/thumb4.jpeg",
-    fileName: "random video",
+    fileName: " Cliff",
     duration: 1000,
     durationWatched: 400,
-    createDate: "12/10/2024",
+    createDate: "2024-08-05T10:57:09.979Z",
   },
 ];
-
 const ImageSubPage = () => {
   const [page, setPage] = useState(1);
   const { data, error, isLoading } = useGetFilesQuery({
@@ -57,7 +56,6 @@ const ImageSubPage = () => {
     page,
   });
 
-  console.log(data);
   useEffect(() => {
     console.log(data);
   }, [isLoading]);
@@ -78,6 +76,8 @@ const ImageSubPage = () => {
     if (!data || data.data.length === 0) {
       return <div>No Images found.</div>;
     }
+    console.log(data.data[0].createDate);
+
     return (
       <>
         {data.data.map((item) => (
