@@ -9,6 +9,9 @@ import ValidatedInput from "../inputs/ValidatedInput";
 import { validateText } from "../../utils/validators";
 import { HexColorPicker } from "react-colorful";
 import { useAddTagMutation, useGetTagsQuery, useDeleteTagMutation } from "../../api/TagsAPI";
+import { openPermission } from "../../store/UISlice";
+import PermissionModal from "../../Modals/PermissionModal";
+
 
 const Field = ({ id, color, name, date, action }) => {
     return (
@@ -39,11 +42,11 @@ const Field = ({ id, color, name, date, action }) => {
 const Permissions = () => {
     const dispatch = useDispatch();
 
-    
-    
+
+
     // const { data, error, isLoading, refetch } = useGetTagsQuery();
     // const [addTag] = useAddTagMutation();
-    
+
     // useEffect(() => {
     //     console.log("tag data", data);
     // }, [data, isLoading])
@@ -54,24 +57,24 @@ const Permissions = () => {
     //     setNewTag('');
     // }
 
-    const handleDeleteTag = async (tagId) => {
-        await deleteTag(permissionId).unwrap();
-        refetch();
-    }
+    // const handleDeleteTag = async (tagId) => {
+    //     await deleteTag(permissionId).unwrap();
+    //     refetch();
+    // }
 
 
 
     const renderContent = () => {
         if (isLoading) {
-            return <tr><td className="text-center p-3"colSpan={4}>Loading...</td></tr>;
+            return <tr><td className="text-center p-3" colSpan={4}>Loading...</td></tr>;
         }
 
         if (error) {
-            return <tr><td className="text-center p-3"colSpan={4}>Error: {error.message}</td></tr>;
+            return <tr><td className="text-center p-3" colSpan={4}>Error: {error.message}</td></tr>;
         }
 
         if (!data || data.length === 0) {
-            return <tr><td className="text-center p-3"colSpan={4} >No Permissions found.</td></tr>;
+            return <tr><td className="text-center p-3" colSpan={4} >No Permissions found.</td></tr>;
         }
 
         return (
@@ -89,23 +92,27 @@ const Permissions = () => {
             </>
         );
     };
+
+    const handleOpenPermission = () => {
+        console.log('sdsds');
+        dispatch(openPermission());
+    }
+
     return (
         <>
+            <PermissionModal />
             <div className="p-5 lg:p-8 relative overflow-x-auto shadow-md sm:rounded-lg transition-all ease-in-out">
-                <div className="flex justify-start mb-3">
+                <div className="flex items-center justify-between overflow-visible ">
                     <div className="bg-gray-800">
                         <h1 className="flex font-bold text-md md:text-xl text-white text-center">Your Permissions</h1>
                     </div>
-                </div>
-                <br></br>
-                <div className="flex items-center justify-between overflow-visible ">
-                    
-                    <button 
+                    <button onClick={handleOpenPermission}
                         className={`text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg
                             text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 h-10`}
-                    > Create Tag
+                    > Add Permission
                     </button>
                 </div>
+                <br></br>
                 <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                     <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         <tr>

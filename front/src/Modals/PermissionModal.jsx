@@ -5,59 +5,65 @@ import { useGetFilesQuery, useGetUsersQuery } from '../api/PermissionAPI'
 import { useGetTagsQuery } from "../api/TagsAPI";
 import { useGetGroupsQuery } from "../api/groupsAPI";
 import { extractFilename } from "../utils/helpers";
+import { useAddPermissionsMutation } from '../api/PermissionAPI';
 import SearchDropdown from "../Dropdowns/SearchDropdown";
 
 import Modal from "./Modal";
 
 const PermissionModal = () => {
     const dispatch = useDispatch();
+    const [addPerms, { isLoading }] = useAddPermissionsMutation();
+
     const isOpen = useSelector((state) => state.UI.isPermissionOpen);
     const pFileId = useSelector((state) => state.UI.permissionFileId);
 
+    useEffect(() => {
+        console.log('pm', isOpen);
+    }, [isOpen])
 
     const [fileTagList, setFileTagList] = useState([]);
     const [userGroupList, setuserGroupList] = useState([]);
 
-    const files = useGetFilesQuery();
-    const tags = useGetTagsQuery();
+    const { data: files, error: error1, isLoading: isLoading1 } = useGetFilesQuery();
+    const { data: tags, error: error2, isLoading: isLoading2 } = useGetTagsQuery();
 
-    const users = useGetUsersQuery();
-    const groups = useGetGroupsQuery();
+    const { data: users, error: error3, isLoading: isLoading3 } = useGetUsersQuery();
+    const { data: groups, error: error4, isLoading: isLoading4 } = useGetGroupsQuery();
 
     let fileTagOpts = null, userGroupOpts = null;
     useEffect(() => {
         console.log(files, tags, users, groups)
-        if (files.isSuccess && tags.isSuccess && users.isSuccess && groups.isSuccess) {
-            fileTagOpts = [
-                ...files.data.map(i => {
-                    return {
-                        ...i,
-                        displayName: extractFilename(i.location)
-                    };
-                }),
-                ...tags.data.map(i => {
-                    return {
-                        ...i,
-                        displayName: i.name + ' - Tag'
-                    }
-                })
-            ];
+        if (!isLoading1 && !isLoading2 && !isLoading3 && !isLoading4) {
+            // fileTagOpts = [
+            //     ...files.map(i => {
+            //         return {
+            //             ...i,
+            //             displayName: extractFilename(i.location)
+            //         };
+            //     }),
+            //     ...tags.map(i => {
+            //         return {
+            //             ...i,
+            //             displayName: i.name + ' - Tag'
+            //         }
+            //     })
+            // ];
 
-            userGroupOpts = [
-                ...users.data.map(i => {
-                    return {
-                        ...i,
-                        displayName: i.username
-                    }
-                }),
-                ...groups.data.map(i => {
-                    return {
-                        ...i,
-                        displayName: i.groupName + ' - Group'
-                    }
-                })
-            ]
-            console.log(fileTagOpts, userGroupOpts);
+            // userGroupOpts = [
+            //     ...users.map(i => {
+            //         return {
+            //             ...i,
+            //             displayName: i.username
+            //         }
+            //     }),
+            //     ...groups.map(i => {
+            //         return {
+            //             ...i,
+            //             displayName: i.groupName + ' - Group'
+            //         }
+            //     })
+            // ]
+            // console.log(fileTagOpts, userGroupOpts);
         }
     }, [files, tags, users, groups])
 
@@ -74,30 +80,80 @@ const PermissionModal = () => {
     // };
 
     const handleClose = () => {
+        setFileTagList([])
+        setuserGroupList([])
+    }
 
+    const handleAddPermissisons = async () => {
+        await addPerms({fileTag: fileTagList, userGroup:userGroupList});
+        // window.location.reload();
+        dispatch(closePermission);
     }
 
     return (
-        <Modal className={"max-w-xl"} uiState={isOpen} closeAction={handleClose}>
+        // <Modal className={"max-w-md"} uiState={isUploadModalOpen} closeAction={closeUploadModal}></Modal>
+        <Modal className={"max-w-2xl"} uiState={isOpen} closeAction={closePermission} beforeClose={handleClose}>
             <div className="p-4 md:p-5">
 
                 <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">Add Permission</h3>
                 <br />
                 <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">What to Share</h3>
-                <SearchDropdown
-                    data={fileTagOpts}
-                    setValue={setFileTagList}
-                    hideChips={false}
-                    fieldName="displayName"
-                />
+                {
+                    isLoading1 || isLoading2 ?
+                        <></>
+                        :
+                        <SearchDropdown
+                            setValue={setFileTagList}
+                            hideChips={false}
+                            fieldName="displayName"
+                            data={[
+                                ...files.map(i => {
+                                    return {
+                                        ...i,
+                                        displayName: extractFilename(i.location)
+                                    };
+                                }),
+                                ...tags.map(i => {
+                                    return {
+                                        ...i,
+                                        displayName: i.name + ' - Tag'
+                                    }
+                                })
+                            ]}
+                        />
+                }
                 <br />
                 <h3 className="mb-1 text-xl font-bold text-gray-900 dark:text-white">Who to Share With</h3>
-                <SearchDropdown
-                    data={fileTagOpts}
-                    setValue={setFileTagList}
-                    hideChips={false}
-                    fieldName="displayName"
-                />
+                {
+                    isLoading3 || isLoading4 ?
+                        <></>
+                        :
+                        <SearchDropdown
+                            setValue={setuserGroupList}
+                            hideChips={false}
+                            fieldName="displayName"
+                            data={[
+                                ...users.map(i => {
+                                    return {
+                                        ...i,
+                                        displayName: i.username
+                                    }
+                                }),
+                                ...groups.map(i => {
+                                    return {
+                                        ...i,
+                                        displayName: i.groupName + ' - Group'
+                                    }
+                                })
+                            ]}
+                        />
+                }
+                <div className="flex items-center justify-end mt-6 space-x-4 rtl:space-x-reverse">
+                    <button onClick={handleAddPermissisons}
+                        className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        {isLoading1 ? 'Adding...' : 'Add Permissions'}
+                    </button>
+                </div>
             </div>
         </Modal>
     );

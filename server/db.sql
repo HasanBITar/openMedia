@@ -132,3 +132,10 @@ CREATE TABLE permission (
     file_id UUID REFERENCES file(file_id) ON DELETE CASCADE,
     create_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+ALTER TABLE permission
+ADD CONSTRAINT unique_user_group_tag_file
+UNIQUE (user_id, group_id, tag_id, file_id);
+
+

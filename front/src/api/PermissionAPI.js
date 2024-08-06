@@ -23,19 +23,19 @@ export const permissionAPI = createApi({
 
         getPermissions: builder.query({
             query: () => ({
-                url: `${API.getMyFiles}`,
+                url: `${API.getPermissions}`,
                 method: 'GET',
             }),
         }),
         
 
-        // addTag: builder.mutation({
-        //     query: ({ name, color }) => ({
-        //         url: `${API.addTag}`,
-        //         method: 'POST',
-        //         body: { name, color },
-        //     }),
-        // }),
+        addPermissions: builder.mutation({
+            query: ({ fileTag, userGroup }) => ({
+                url: `${API.addPermissions}`,
+                method: 'POST',
+                body: { fileTag, userGroup },
+            }),
+        }),
 
         // deleteTag: builder.mutation({
         //     query: (tagId) => ({
@@ -49,6 +49,8 @@ export const permissionAPI = createApi({
 
 export const {
     useGetFilesQuery,
-    useGetUsersQuery,    
+    useGetUsersQuery, 
+    useGetPermissionsQuery,   
+    useAddPermissionsMutation,
 
 } = permissionAPI;

@@ -38,7 +38,7 @@ const SearchDropdown = ({ data, setValue, hideChips, fieldName }) => {
         onRemove={handleRemove}
         customOption={displayOption}
         showCheckbox={true}
-        placeholder='Type user name'
+        placeholder='Type to search'
         className='w-full bg-gray-input focus:outline-none focus:border-none border-none ring-0 outline-none rounded-lg'
         id='myRandomSearch'
         style={hideChips? style : {}}

@@ -31,7 +31,8 @@ export const API = {
 
   getAllUsers: 'permission/users',
   getMyFiles: 'permission/myfiles',
-  getPermissions : 'permission/mypermissions'
+  getPermissions : 'permission/mypermissions',
+  addPermissions : 'permission/add',
 
 };
 

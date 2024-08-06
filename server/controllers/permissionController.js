@@ -7,24 +7,38 @@ const permissionModel = require('../models/permissionModel');
 
 const getAllUsers = async (req, res) => {
     const [ok, users] = await userModel.getAllUsers(req.userId);
-    if(!ok) return errorRespone(users, res);
+    if (!ok) return errorRespone(users, res);
 
     res.status(200).json(users);
 }
 
 const getMyFiles = async (req, res) => {
     const [ok, files] = await fileModel.getMyFiles(req.userId);
-    if(!ok) return errorRespone(files, res);
+    if (!ok) return errorRespone(files, res);
     res.status(200).json(files);
 }
 
 
 const getMyPermissions = async (req, res) => {
     const [ok, result] = await permissionModel.getMyPermissions(req.userId);
+    if (!ok) return errorRespone(result, res);
+    res.status(200).json(result)
 }
 
 
-
+const addPermissions = async (req, res) => {
+    const { fileTag, userGroup } = req.body
+    const userId = req.userId
+    console.log('addpermission', userId, req.body);
+    for (ft of fileTag) {
+        for (ug of userGroup) {
+            console.log('ft', ft);
+            console.log('ug', ug);
+            await permissionModel.addPermission(ft, ug);
+        }
+    }
+    res.status(200).json({ success: true });
+}
 
 
 
@@ -67,5 +81,6 @@ const addTag = async (req, res) => {
 module.exports = {
     getAllUsers,
     getMyFiles,
-    getMyPermissions
+    getMyPermissions,
+    addPermissions
 };

@@ -29,10 +29,10 @@ const SettingsSidebar = () => {
             <br></br>
             <div className="flex-1">
                 <ul className="flex-column space-y space-y-5 text-sm font-medium text-gray-500 dark:text-gray-400">
-                    <Field url={'/settings'}>
+                    {/* <Field url={'/settings'}>
                         <FaUser className="w-6 h-6 me-2" />
                         Profile
-                    </Field>
+                    </Field> */}
                     <Field url={'/tags'}>
                         <FaTags className="w-6 h-6 me-2" />
                         Tags

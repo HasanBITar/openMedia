@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-const Modal = ({ className, children, uiState, closeAction }) => {
+const Modal = ({ className, children, uiState, closeAction, beforeClose = ()=>{} }) => {
     const [isOpen, setIsOpen] = useState(uiState);
     const dispatch = useDispatch();
 
@@ -11,7 +11,8 @@ const Modal = ({ className, children, uiState, closeAction }) => {
     }, [uiState])
 
     const closeModal = () => {
-        dispatch(closeAction())
+        beforeClose();
+        dispatch(closeAction());
     }
 
     // TODO multiple files upload

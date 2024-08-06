@@ -35,14 +35,15 @@ const UISlice = createSlice({
       state.isAddUserToGroupModal = false;
     },
 
-    openPermission(state, fileId = null) {
-      state.permissionFileId = fileId;
-      state.openPermission = true;
+    openPermission(state) {
+      console.log('opennnnn ppp', state, state.payload)
+      // state.permissionFileId = fileId;
+      state.isPermissionOpen = true;
     },
 
     closePermission(state) {
       state.permissionFileId = null;
-      state.openPermission = false;
+      state.isPermissionOpen = false;
     }
   },
 });
